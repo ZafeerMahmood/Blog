@@ -1,4 +1,5 @@
-"use client";
+"use client"
+
 import { useUserStore } from "@/lib/store";
 import { createBrowserClient } from "@supabase/ssr";
 import { useEffect, useCallback } from "react";
@@ -12,7 +13,6 @@ function SessionProvider() {
 
   const readSession = useCallback(async () => {
     const { data } = await supabase.auth.getSession();
-    console.log(data);
     if (data && data.session?.user) {
       setUser(data.session.user);
     }

@@ -1,7 +1,7 @@
 "use client";
 
 import { SiGithub } from "react-icons/si";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { createBrowserClient } from "@supabase/ssr";
 import { usePathname } from "next/navigation";
 function Login() {

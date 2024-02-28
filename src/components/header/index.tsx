@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { useUserStore } from "@/lib/store";
 import Profile from "./Profile";
 
 function Navbar() {
-  const user =useUserStore(state => state.user);
+  const user = useUserStore((state) => state.user);
   return (
     <nav className="flex justify-between">
       <div className="group">
@@ -16,7 +16,7 @@ function Navbar() {
         </Link>
         <div className="h-1 w-0 group-hover:w-full transition-all bg-foreground"></div>
       </div>
-      {user?.id ? <Profile/> : <Login />}
+      {user?.id ? <Profile /> : <Login />}
     </nav>
   );
 }
