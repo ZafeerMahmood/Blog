@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-
+import Navbar from "@/components/header/Navbar";
+import SessionProvider from "@/components/session-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,8 +25,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="max-w-7xl mx-auto p-10 space-y-5">
+            <Navbar />
+            {children}
+          </main>
         </ThemeProvider>
+        <SessionProvider />
       </body>
     </html>
   );
