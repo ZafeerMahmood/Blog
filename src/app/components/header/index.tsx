@@ -1,22 +1,18 @@
 import React from "react";
+import { routes } from "@/contents/routes";
 
 function Navbar() {
   return (
-    <header className="fixed top-10 mx-auto w-full flex items-center justify-center">
-        <ul className="flex gap-16 rounded-lg text-xl ">
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>About</a>
-          </li>
-          <li>
-            <a>Contact</a>
-          </li>
-          <li>
-            <a>blog</a>
-          </li>
-        </ul>
+    <header className="fixed top-8 mx-auto w-full flex items-center justify-center h-16 ">
+      <div className="flex justify-center items-center bg-blue-950 gap-5 text-lg rounded-full px-5 py-2">
+        {routes.map((route) => {
+            return (
+                <p key={route} className="hover:bg-slate-700 rounded-full px-4 py-2">
+                {route}
+                </p>
+            );
+        })}
+        </div>
     </header>
   );
 }

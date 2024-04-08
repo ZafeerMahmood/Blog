@@ -21,7 +21,9 @@
      
       "@/*": ["./src/app/*"],
       "@components/*": ["./src/app/components/*"],
-      "@css/*": ["./src/app/css/*"]
+      "@css/*": ["./src/app/css/*"],
+      "@constants/*": ["./src/app/constants/*"]
+
 
     
     }
