@@ -4,6 +4,7 @@ import "@css/globals.css";
 import Navbar from "@components/header";
 import Footer from "@components/footer";
 const inter = Inter({ subsets: ["latin"] });
+import { Providers } from "@/theme/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Navbar />
-        <div className="min-h-screen mt-10">{children}</div>
-        <Footer />
+        <Providers>
+          <Navbar />
+          <main className="min-h-screen mt-10">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
-import { routes } from "@/contents/routes";
-
+import { routes } from "@/constants/routes";
+import SwapTheme from "./Swap/index";
 function Navbar() {
   return (
     <header className="fixed top-8 mx-auto w-full flex items-center justify-center h-16 ">
@@ -17,6 +17,9 @@ function Navbar() {
             </p>
           );
         })}
+        <div className="px-4 py-2 h-full w-full items-center justify-center flex">
+          <SwapTheme />
+        </div>
       </div>
     </header>
   );
