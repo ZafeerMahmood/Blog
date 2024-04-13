@@ -21,6 +21,7 @@ const config: Config = {
         "primary-secondary": "var(--primary-secondary)",
         "foreground-secondary": "var(--foreground-secondary)",
         "background-secondary": "var(--background-secondary)",
+        "background-dark": "var(--background-dark)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
