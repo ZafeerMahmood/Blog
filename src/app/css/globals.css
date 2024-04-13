@@ -5,22 +5,24 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #101010;
-    --background-secondary: #4c4c4c;
+    --background-dark: #000000;
     --foreground: #ededed;
     --foreground-secondary: #a5a5a5;
     --primary: #40cf8e;
     --primary-secondary: #289061;
+    --accent: #18151a;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #ededed;
-    --background-secondary: #4c4c4c;
-    --foreground: #131313;
-    --foreground-secondary: #a5a5a5;
+    --background-dark:#f6f6f6
+    --background: #f6f6f6;
+    --foreground: #1b1b1b;
+    --foreground-secondary: #525252;
     --primary: #40cf8e;
     --primary-secondary: #289061;
+    --accent: ##18151a;
   }
 }
 

@@ -8,9 +8,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     const handleScroll = () => {
       const navBar = document.getElementById("navbar");
       if (window.scrollY > 100) {
-        navBar!!.classList.add("bg-background-secondary", "border");
+        navBar!!.classList.add("bg-background-secondary", "border-[1px]");
       } else {
-        navBar!!.classList.remove("bg-background-secondary", "border");
+        navBar!!.classList.remove("bg-background-secondary", "border-[1px]");
       }
     };
 
