@@ -1,4 +1,4 @@
-export const routes = ["Home", "About", "Services", "Contact", "Login"];
+export const routes = ["Home", "Services", "Contact", "Blog"];
 
 export const skillset = [
   "React",

@@ -11,22 +11,28 @@ export default function Home() {
         className="flex items-center justify-center h-[750px] w-full"
         style={{
           backgroundImage: "url('/stars.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat",
         }}
       >
         {/* HERO */}
         <div
-          className="flex flex-col gap-5 text-center items-center justify-center w-full h-full object-cover object-center bg-no-repeat "
-          style={{
-            backgroundImage: "url('/gradient.jpeg')",
-          }}
+          className="flex flex-col gap-5 text-center items-center justify-center"
+          // style={{
+          //   backgroundImage: "url('/gradient.jpeg')",
+          //   backgroundSize: "contain",
+          //   backgroundPosition: "center",
+          //   backgroundRepeat: "no-repeat",
+          // }}
         >
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">A Software Engineer</h1>
           <p className="px-5">
             I{"'"}m passionate about creating experiences that are easy to use,
             accessible and
-            <p className="">that meet the users need.</p>
           </p>
+          <p className="">that meet the users need.</p>
         </div>
       </div>
 
