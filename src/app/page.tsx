@@ -1,3 +1,5 @@
+import { skillset } from "@constants/index";
+import SkillSetBox from "@/components/ui/skillsetBox";
 export default function Home() {
   return (
     <section
@@ -20,10 +22,10 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         >
-          <h1>Hello. I'm Zafeer.</h1>
+          <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">A Software Engineer</h1>
           <p className="leading-3">
-            I'm passionate about creating experiences that are easy to use,
+            I{"'"}m passionate about creating experiences that are easy to use,
             accessible and
           </p>
           <p className="leading-3">that meet the users need.</p>
@@ -32,7 +34,7 @@ export default function Home() {
 
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">About</h2>
-        <p className="leading-6">
+        <p className="leading-6 mt-5">
           About I{"'"}m a 21 year old developer living in Germany. I discovered
           my passion for coding after seeing my brother do it. I fell in love
           with using my creativity to build things for the web. Through
@@ -43,6 +45,20 @@ export default function Home() {
           because it allows me to explore my creativity and accomplish exciting
           things.
         </p>
+      </div>
+
+      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
+        <h2 className="text-2xl">Skillset</h2>
+        <div className="flex flex-wrap gap-2 mt-5">
+          {skillset.map((skill) => {
+            return <SkillSetBox key={skill} skill={skill} />;
+          })}
+        </div>
+      </div>
+
+      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
+        <h2 className="text-2xl">Experience</h2>
+        <p className="leading-6 mt-5"></p>
       </div>
     </section>
   );

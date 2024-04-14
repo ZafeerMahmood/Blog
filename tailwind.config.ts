@@ -19,6 +19,8 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary: "var(--primary)",
         accent: "var(--accent)",
+        box: "var(--box)",
+        "box-border": "var(--box-border)",
         "primary-secondary": "var(--primary-secondary)",
         "foreground-secondary": "var(--foreground-secondary)",
         "background-secondary": "var(--background-secondary)",

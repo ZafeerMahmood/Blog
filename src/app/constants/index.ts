@@ -1,0 +1,25 @@
+export const routes = ["Home", "About", "Services", "Contact", "Login"];
+
+export const skillset = [
+  "React",
+  "Next.js",
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "Flask",
+  "FastAPI",
+  "Tailwind CSS",
+  "Git",
+  "Supabase",
+  "Firebase",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "SQL",
+  "Cypress",
+  "Zustand",
+  "GraphQL",
+  "Docker",
+  "REST API",
+  "Linux",
+];

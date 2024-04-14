@@ -11,6 +11,9 @@
     --primary: #40cf8e;
     --primary-secondary: #289061;
     --accent: #18151a;
+    --box:#232323;
+    --box-border:#333333;
+
   }
 }
 
@@ -23,6 +26,8 @@
     --primary: #40cf8e;
     --primary-secondary: #289061;
     --accent: ##18151a;
+    --box:#232323;
+    
   }
 }
 

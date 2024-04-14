@@ -1,4 +1,4 @@
-import { routes } from "@/constants/routes";
+import { routes } from "@/constants/index";
 import SwapTheme from "./Swap/index";
 function Navbar() {
   return (
