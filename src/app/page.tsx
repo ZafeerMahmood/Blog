@@ -1,37 +1,36 @@
 import { skillset } from "@constants/index";
 import SkillSetBox from "@/components/ui/skillsetBox";
+
 export default function Home() {
   return (
     <section
       id="Home"
-      className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background  "
+      className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background"
     >
       <div
         className="flex items-center justify-center h-[750px] w-full"
         style={{
           backgroundImage: "url('/stars.svg')",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
         }}
       >
+        {/* HERO */}
         <div
-          className="flex flex-col gap-5 text-center items-center justify-center w-full h-full object-cover  "
+          className="flex flex-col gap-5 text-center items-center justify-center w-full h-full object-cover object-center bg-no-repeat "
           style={{
             backgroundImage: "url('/gradient.jpeg')",
-            backgroundPosition: "center",
           }}
         >
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">A Software Engineer</h1>
-          <p className="leading-3">
+          <p className="px-5">
             I{"'"}m passionate about creating experiences that are easy to use,
             accessible and
+            <p className="">that meet the users need.</p>
           </p>
-          <p className="leading-3">that meet the users need.</p>
         </div>
       </div>
 
+      {/* ABOUT */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">About</h2>
         <p className="leading-6 mt-5">
@@ -47,6 +46,7 @@ export default function Home() {
         </p>
       </div>
 
+      {/* SKILLSET */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">Skillset</h2>
         <div className="flex flex-wrap gap-2 mt-5">
@@ -56,6 +56,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Experience */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">Experience</h2>
         <p className="leading-6 mt-5"></p>

@@ -6,11 +6,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // use Effect to handle navbar motion
   useEffect(() => {
     const handleScroll = () => {
-      const navBar = document.getElementById("navbar");
+      const navBar = document.getElementById("MainNav");
       if (window.scrollY > 100) {
-        navBar!!.classList.add("bg-background-secondary", "border-[1px]");
+        navBar!!.classList.add("bg-box", "border-2", "border-box-border");
       } else {
-        navBar!!.classList.remove("bg-background-secondary", "border-[1px]");
+        navBar!!.classList.remove("bg-box", "border-2", "border-box-border");
       }
     };
 
