@@ -25,6 +25,7 @@ const config: Config = {
         "foreground-secondary": "var(--foreground-secondary)",
         "background-secondary": "var(--background-secondary)",
         "background-dark": "var(--background-dark)",
+        "box-accent": "var(--box-accent)",
       },
     },
   },

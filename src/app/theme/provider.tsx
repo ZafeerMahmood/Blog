@@ -8,9 +8,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
     const handleScroll = () => {
       const navBar = document.getElementById("MainNav");
       if (window.scrollY > 100) {
-        navBar!!.classList.add("bg-box", "border-2", "border-box-border");
+        navBar!!.classList.add(
+          "bg-[#232323]",
+          "border-[1px]",
+          "border-box-border"
+        );
       } else {
-        navBar!!.classList.remove("bg-box", "border-2", "border-box-border");
+        navBar!!.classList.remove(
+          "bg-[#232323]",
+          "border-[1px]",
+          "border-box-border"
+        );
       }
     };
 

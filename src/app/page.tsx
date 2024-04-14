@@ -1,6 +1,8 @@
-import { skillset } from "@constants/index";
+import { skillset, experience1 } from "@constants/index";
 import SkillSetBox from "@/components/ui/skillsetBox";
-
+import Experience from "@/components/experience";
+import Projects from "./components/ui/Projects";
+import { projects } from "@constants/index";
 export default function Home() {
   return (
     <section
@@ -8,7 +10,7 @@ export default function Home() {
       className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background"
     >
       <div
-        className="flex items-center justify-center h-[750px] w-full"
+        className="flex items-center justify-center h-[700px] w-full"
         style={{
           backgroundImage: "url('/stars.svg')",
           backgroundSize: "cover",
@@ -18,13 +20,13 @@ export default function Home() {
       >
         {/* HERO */}
         <div
-          className="flex flex-col gap-5 text-center items-center justify-center"
-          // style={{
-          //   backgroundImage: "url('/gradient.jpeg')",
-          //   backgroundSize: "contain",
-          //   backgroundPosition: "center",
-          //   backgroundRepeat: "no-repeat",
-          // }}
+          className="flex flex-col gap-5 text-center items-center justify-center w-full h-full "
+          style={{
+            backgroundImage: "url('/gradient.jpeg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "auto",
+            backgroundPosition: "center",
+          }}
         >
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">A Software Engineer</h1>
@@ -57,15 +59,34 @@ export default function Home() {
         <h2 className="text-2xl">Skillset</h2>
         <div className="flex flex-wrap gap-2 mt-5">
           {skillset.map((skill) => {
-            return <SkillSetBox key={skill} skill={skill} />;
+            return (
+              <SkillSetBox
+                key={skill}
+                skill={skill}
+                color={"text-foreground-secondary"}
+              />
+            );
           })}
         </div>
       </div>
-
       {/* Experience */}
-      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
-        <h2 className="text-2xl">Experience</h2>
-        <p className="leading-6 mt-5"></p>
+      <Experience />
+
+      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 ">
+        <h2 className="text-2xl">Projects</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 min-w-7xl ">
+          {projects.map((projects) => {
+            return (
+              <div
+                className=" bg-box border-1 border-box-border gap-5 rounded-sm  row-span-1 col-span-1"
+                key={projects.name}
+              >
+                <p>{projects.name}</p>
+                <p>{projects.framework}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

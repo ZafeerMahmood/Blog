@@ -1,3 +1,6 @@
+import exp from "constants";
+import { frame } from "framer-motion";
+
 export const routes = ["Home", "Services", "Contact", "Blog"];
 
 export const skillset = [
@@ -22,4 +25,38 @@ export const skillset = [
   "Docker",
   "REST API",
   "Linux",
+];
+
+export const experience1 = [
+  "Next.js",
+  "React Native",
+  "TypeScript",
+  "GraphQL",
+  "Nest.js",
+  "Insomnia",
+  "REST",
+  "Python",
+];
+
+export const projects = [
+  {
+    name: "Project 1",
+    framework: ["React", "Next.js", "Tailwind CSS"],
+    github: "https://github.com",
+  },
+  {
+    name: "Project 2",
+    framework: ["React", "Next.js", "Tailwind CSS"],
+    github: "https://github.com",
+  },
+  {
+    name: "Project 3",
+    framework: ["React", "Next.js", "Tailwind CSS"],
+    github: "https://github.com",
+  },
+  {
+    name: "Project 4",
+    framework: ["React", "Next.js", "Tailwind CSS"],
+    github: "https://github.com",
+  },
 ];

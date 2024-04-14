@@ -13,6 +13,7 @@
     --accent: #18151a;
     --box:#232323;
     --box-border:#333333;
+    --box-accent:#262626
 
   }
 }
@@ -51,4 +52,7 @@
   .contain{
       @apply flex flex-col max-w-7xl px-10 xl:px-0
     }
+  .nav{
+    @apply flex justify-center items-center  gap-2 md:gap-3 lg:gap-5 rounded-full px-2 md:px-3 lg:px-5 py-1 lg:py-2  
+  }
 }
