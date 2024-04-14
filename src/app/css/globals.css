@@ -31,3 +31,18 @@
     text-wrap: balance;
   }
 }
+
+@layer components {
+ h1{
+    @apply text-7xl text-wrap
+  }
+  h2{
+    @apply text-2xl text-wrap
+  }
+  p{
+    @apply text-lg text-wrap text-foreground-secondary
+  }
+  .contain{
+    @apply flex flex-col max-w-7xl px-10 xl:px-0
+  }
+}
