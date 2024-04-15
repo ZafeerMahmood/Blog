@@ -1,4 +1,5 @@
 import { routes } from "@/constants/index";
+import Link from "next/link";
 
 function Navbar() {
   return (
@@ -9,12 +10,13 @@ function Navbar() {
       >
         {routes.map((route) => {
           return (
-            <p
-              key={route}
+            <Link
+              key={route.name}
+              href={route.path}
               className="rounded-full px-2 md:px-3 lg:px-4 py-1 lg:py-2  cursor-pointer text-sm lg:text-lg text-foreground hover:bg-box"
             >
-              {route}
-            </p>
+              {route.name}
+            </Link>
           );
         })}
       </div>

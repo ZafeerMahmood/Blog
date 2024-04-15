@@ -44,15 +44,15 @@ export default function Home() {
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">About</h2>
         <p className="leading-6 mt-5">
-          About I{"'"}m a 21 year old developer living in Germany. I discovered
-          my passion for coding after seeing my brother do it. I fell in love
-          with using my creativity to build things for the web. Through
-          persistence, self-discipline, and commitment, I achieved my goal of
-          becoming a frontend developer. What kept me on this journey is that I
-          always find learning new things exciting and facing unfamiliar
-          challenges. In addition to coding, I enjoy building side projects
-          because it allows me to explore my creativity and accomplish exciting
-          things.
+          Hello there! I{"'"}m Zafeer, a developer based in Pakistan. My
+          fascination with coding sparked when I first encountered the magic of
+          programming. The allure of using my creativity to shape digital
+          experiences was irresistible. Fuelled by determination and a thirst
+          for knowledge, I pursued my computer science degree and ventured into
+          the world of software engineering. What propels me forward is the
+          excitement of continuous learning and the satisfaction of conquering
+          new challenges. Outside of work, I immerse myself in side projects,
+          exploring my creativity and bringing ideas to fruition.
         </p>
       </div>
 
