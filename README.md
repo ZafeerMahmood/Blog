@@ -13,7 +13,9 @@ This is a simple portfolio and blog website built with Next.js and Tailwind CSS.
 ## Things Todo
 
 - [ ] Add a contact form
-- [ ] Blog Search
-- [ ] Blogs List
-- [ ] Render Blogs in a separate page
-- [ ] Add a blog post page
+- [ ] Deploy to Cloudflare Pages or Vercel with edge runtime
+- [ ] Add PostgreSQL database for /db/blog
+- [ ] Complete Blog Page Read Mdx files from content/blog
+- [ ] Add a search feature
+- [ ] Render Individual Blog Post
+- [ ] Generate SiteMap based of /db/blog
