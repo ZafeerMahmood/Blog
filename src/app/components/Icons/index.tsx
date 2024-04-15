@@ -1,3 +1,4 @@
 import { Moon } from "./Moon";
 import { Sun } from "./Sun";
-export { Moon, Sun };
+import { Github } from "./Github";
+export { Moon, Sun, Github };

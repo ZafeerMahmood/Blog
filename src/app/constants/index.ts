@@ -1,7 +1,7 @@
 import exp from "constants";
 import { frame } from "framer-motion";
 
-export const routes = ["Home", "Services", "Contact", "Blog"];
+export const routes = ["Home", "Contact", "Blog"];
 
 export const skillset = [
   "React",

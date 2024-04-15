@@ -72,17 +72,16 @@ export default function Home() {
       {/* Experience */}
       <Experience />
 
-      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 ">
-        <h2 className="text-2xl">Projects</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 min-w-7xl ">
-          {projects.map((projects) => {
+      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
+        <h2 className="text-2xl ">Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
+          {projects.map((project) => {
             return (
               <div
-                className=" bg-box border-1 border-box-border gap-5 rounded-sm  row-span-1 col-span-1"
-                key={projects.name}
+                className="rounded-sm row-span-1 col-span-1"
+                key={project.name}
               >
-                <p>{projects.name}</p>
-                <p>{projects.framework}</p>
+                <Projects projects={project} />
               </div>
             );
           })}
