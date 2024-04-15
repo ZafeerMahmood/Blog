@@ -1,5 +1,4 @@
 "use client";
-import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -28,9 +27,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-      {children}
-    </ThemeProvider>
-  );
+  return <>{children}</>;
 }

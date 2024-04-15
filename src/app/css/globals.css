@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.gradientBG{
-background: rgb(73,73,73);
-background: linear-gradient(138deg, rgba(73,73,73,1) 0%, rgba(55,55,55,1) 0%, rgba(38,38,38,1) 0%, rgba(31,31,31,1) 13%, rgba(28,28,28,1) 34%);
+.gradientBG {
+  background: rgb(73, 73, 73);
+  background: linear-gradient(
+    138deg,
+    rgba(73, 73, 73, 1) 0%,
+    rgba(55, 55, 55, 1) 0%,
+    rgba(38, 38, 38, 1) 0%,
+    rgba(31, 31, 31, 1) 13%,
+    rgba(28, 28, 28, 1) 34%
+  );
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -16,24 +22,9 @@ background: linear-gradient(138deg, rgba(73,73,73,1) 0%, rgba(55,55,55,1) 0%, rg
     --primary: #40cf8e;
     --primary-secondary: #289061;
     --accent: #18151a;
-    --box:#232323;
-    --box-border:#333333;
-    --box-accent:#bbbbbb
-
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background-dark:#f6f6f6
-    --background: #f6f6f6;
-    --foreground: #1b1b1b;
-    --foreground-secondary: #525252;
-    --primary: #40cf8e;
-    --primary-secondary: #289061;
-    --accent: ##18151a;
-    --box:#232323;
-    
+    --box: #232323;
+    --box-border: #333333;
+    --box-accent: #bbbbbb;
   }
 }
 
@@ -44,20 +35,25 @@ background: linear-gradient(138deg, rgba(73,73,73,1) 0%, rgba(55,55,55,1) 0%, rg
 }
 
 @layer components {
-  h1{
-      @apply  text-5xl md:text-6xl lg:text-7xl text-wrap
-    }
-
-  h2{
-      @apply text-2xl text-wrap
-    }
-  p{
-      @apply text-lg text-wrap text-foreground-secondary
+  body {
+    color: var(--foreground);
+    background: var(--background);
   }
-  .contain{
-      @apply flex flex-col max-w-7xl px-10 xl:px-0
-    }
-  .nav{
-    @apply flex justify-center items-center  gap-2 md:gap-3 lg:gap-5 rounded-full px-2 md:px-3 lg:px-5 py-1 lg:py-2  
+
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl text-wrap;
+  }
+
+  h2 {
+    @apply text-2xl text-wrap;
+  }
+  p {
+    @apply text-lg text-wrap text-foreground-secondary;
+  }
+  .contain {
+    @apply flex flex-col max-w-7xl px-10 xl:px-0;
+  }
+  .nav {
+    @apply flex justify-center items-center  gap-2 md:gap-3 lg:gap-5 rounded-full px-2 md:px-3 lg:px-5 py-1 lg:py-2;
   }
 }
