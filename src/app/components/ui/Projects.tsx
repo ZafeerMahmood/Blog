@@ -20,7 +20,7 @@ function Projects({
           })}
         </div>
       </div>
-      <Link className="p-2 mt-2 mr-2" href={"/"}>
+      <Link className="p-2 mt-5 mr-6" href={"/"}>
         <Github className="h-5 w-5 hover:text-primary" />
       </Link>
     </div>

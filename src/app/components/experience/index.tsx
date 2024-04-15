@@ -1,4 +1,4 @@
-import { experience1 } from "@/constants";
+import { experience1, experience2 } from "@/constants";
 import SkillSetBox from "@/components/ui/skillsetBox";
 function Experience() {
   return (
@@ -50,7 +50,7 @@ function Experience() {
               efficient. I had experience working in a Kanban environment.
             </p>
             <div className="flex flex-wrap gap-2 mt-5 ">
-              {experience1.map((skill) => {
+              {experience2.map((skill) => {
                 return (
                   <SkillSetBox
                     key={skill}

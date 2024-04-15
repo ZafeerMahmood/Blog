@@ -2,7 +2,9 @@ import { skillset, experience1 } from "@constants/index";
 import SkillSetBox from "@/components/ui/skillsetBox";
 import Experience from "@/components/experience";
 import Projects from "./components/ui/Projects";
-import { projects } from "@constants/index";
+import Writing from "./components/ui/Writing";
+import { projects, writings } from "@constants/index";
+
 export default function Home() {
   return (
     <section
@@ -72,6 +74,7 @@ export default function Home() {
       {/* Experience */}
       <Experience />
 
+      {/* PROJECTS */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
         <h2 className="text-2xl ">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
@@ -82,6 +85,23 @@ export default function Home() {
                 key={project.name}
               >
                 <Projects projects={project} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* WRITINGS */}
+      <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
+        <h2 className="text-2xl ">Some of my writings</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
+          {writings.map((writings) => {
+            return (
+              <div
+                className="rounded-sm row-span-1 col-span-1"
+                key={writings.title}
+              >
+                <Writing writings={writings} />
               </div>
             );
           })}

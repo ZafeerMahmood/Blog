@@ -1,6 +1,3 @@
-import exp from "constants";
-import { frame } from "framer-motion";
-
 export const routes = ["Home", "Contact", "Blog"];
 
 export const skillset = [
@@ -38,6 +35,17 @@ export const experience1 = [
   "Python",
 ];
 
+export const experience2 = [
+  "Next.js",
+  "React Native",
+  "TypeScript",
+  "GraphQL",
+  "Nest.js",
+  "Insomnia",
+  "REST",
+  "Python",
+];
+
 export const projects = [
   {
     name: "Project 1",
@@ -58,5 +66,36 @@ export const projects = [
     name: "Project 4",
     framework: ["React", "Next.js", "Tailwind CSS"],
     github: "https://github.com",
+  },
+];
+
+export const writings = [
+  {
+    title: "Blog 1",
+    description: "This is a blog",
+    ttr: "2 mins read",
+    time: "2022-04-01",
+    link: "https://zafeer.tech",
+  },
+  {
+    title: "Blog 2",
+    description: "This is a blog",
+    ttr: "2 mins read",
+    time: "2022-04-01",
+    link: "https://zafeer.tech",
+  },
+  {
+    title: "Blog 3",
+    description: "This is a blog",
+    ttr: "2 mins read",
+    time: "2022-04-01",
+    link: "https://zafeer.tech",
+  },
+  {
+    title: "Blog 4",
+    description: "This is a blog",
+    ttr: "2 mins read",
+    time: "2022-04-01",
+    link: "https://zafeer.tech",
   },
 ];
