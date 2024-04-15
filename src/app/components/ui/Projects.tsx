@@ -6,7 +6,11 @@ function Projects({
   projects: { name: string; framework: string[]; github: string };
 }) {
   return (
-    <div className="h-full w-full flex justify-between min-h-56 bg-box border-[1px] border-box-border rounded-md gradientBG hover:border-box-accent">
+    <Link
+      target="_blank"
+      href={projects.github}
+      className="h-full w-full flex justify-between min-h-56 bg-box border-[1px] border-box-border rounded-md gradientBG hover:border-box-accent"
+    >
       <div className="flex p-5"></div>
       <div className="flex flex-col items-center ">
         <h3 className="uppercase text-lg py-14">{projects.name}</h3>
@@ -20,10 +24,10 @@ function Projects({
           })}
         </div>
       </div>
-      <Link className="p-2 mt-5 mr-6" target="_blank" href={projects.github}>
+      <div className="p-2 mt-5 mr-6">
         <Github className="h-5 w-5 hover:text-primary" />
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 
