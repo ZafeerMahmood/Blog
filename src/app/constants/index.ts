@@ -85,7 +85,7 @@ export const projects = [
       "Solidity",
       "Ethereum",
     ],
-    github: "https://github.com",
+    github: "https://github.com/ZafeerMahmood/Nft_marketplace",
   },
 ];
 
