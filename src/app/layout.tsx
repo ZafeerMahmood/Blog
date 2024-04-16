@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
+import { Providers } from "@/theme/provider";
 import { Inter } from "next/font/google";
-import "@css/globals.css";
 import Navbar from "@components/header";
 import Footer from "@components/footer";
+import "@css/globals.css";
 const inter = Inter({ subsets: ["latin"] });
-
-import { Providers } from "@/theme/provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://localhost:3000/"),
