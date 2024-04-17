@@ -17,8 +17,8 @@
   :root {
     --background: #101010;
     --background-dark: #000000;
-    --foreground: #ededed;
-    --foreground-secondary: #a5a5a5;
+    --foreground: #fafafa;
+    --foreground-secondary: #d9d9d9;
     --primary: #40cf8e;
     --primary-secondary: #289061;
     --accent: #18151a;
@@ -55,5 +55,90 @@
   }
   .nav {
     @apply flex justify-center items-center  gap-2 md:gap-3 lg:gap-5 rounded-full px-2 md:px-3 lg:px-5 py-1 lg:py-2;
+  }
+  .prose .anchor {
+    @apply absolute invisible no-underline;
+
+    margin-left: -1em;
+    padding-right: 0.5em;
+    width: 80%;
+    max-width: 700px;
+    cursor: pointer;
+  }
+  .anchor:hover {
+    @apply visible;
+  }
+  .prose a {
+    @apply transition-all text-foreground-secondary underline-offset-2 decoration-[0.1em];
+  }
+  .prose .anchor:after {
+    @apply text-foreground-secondary;
+    content: "#";
+  }
+  .prose *:hover > .anchor {
+    @apply visible;
+  }
+  .prose pre {
+    @apply bg-background rounded-lg overflow-x-auto border border-box-border;
+  }
+  .prose code {
+    @apply px-1 py-0.5 rounded-lg;
+  }
+  .prose pre code {
+    @apply p-0;
+    border: initial;
+    line-height: 1.5;
+  }
+  .prose code span {
+    @apply font-medium;
+  }
+  .prose img {
+    @apply m-0;
+  }
+  .prose h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl text-wrap text-foreground;
+  }
+  .prose h2 {
+    @apply text-2xl text-wrap text-foreground;
+  }
+  .prose h3 {
+    @apply font-medium tracking-tighter  text-foreground !important;
+  }
+  .prose h4 {
+    @apply font-medium tracking-tighter text-foreground !important;
+  }
+  .prose strong {
+    @apply font-medium;
+  }
+  .prose ul {
+    @apply list-disc pl-5 text-foreground;
+  }
+  .prose ol {
+    @apply list-decimal pl-5 text-foreground;
+  }
+  .prose a {
+    @apply text-primary;
+  }
+  .prose a:hover {
+    @apply text-primary-secondary;
+  }
+
+  .prose > :first-child {
+    margin-top: 1.25em !important;
+    margin-bottom: 1.25em !important;
+  }
+  table {
+    display: block;
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .prose p {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    @apply text-lg text-foreground-secondary;
+  }
+  .prose .callout > p {
+    margin: 0 !important;
   }
 }
