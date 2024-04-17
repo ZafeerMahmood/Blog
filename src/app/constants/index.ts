@@ -95,7 +95,7 @@ export const writings = [
     description: "How to verify JWT tokens in Python using PyJWT and Auth0",
     ttr: "2 mins read",
     time: "2022-04-01",
-    link: "/blog/jwt-verification-in-python-auth0",
+    link: "/blog/jwt-verification",
   },
   {
     title:

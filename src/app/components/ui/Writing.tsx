@@ -12,6 +12,7 @@ function Writing({
     link: string;
   };
 }) {
+  console.log(writings);
   return (
     <Link
       target="_blank"

@@ -99,7 +99,7 @@ export default function BlogById({ params }: { params: any }) {
   return (
     <section
       id="blogbyid"
-      className="flex flex-col max-w-7xl w-full items-center justify-center mx-auto px-10 xl:px-0 mt-28 "
+      className="flex flex-col max-w-7xl w-full items-center justify-center mx-auto px-10 xl:px-0 mt-28  min-w-80"
     >
       <script
         type="application/ld+json"
@@ -123,7 +123,7 @@ export default function BlogById({ params }: { params: any }) {
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-7xl">
+      <h1 className="title font-medium text-2xl tracking-tighter mx-auto">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-7xl">
@@ -134,7 +134,7 @@ export default function BlogById({ params }: { params: any }) {
           <Views slug={post.slug} />
         </Suspense>
       </div>
-      <article className="prose prose-quoteless prose-invert">
+      <article className="prose prose-quoteless prose-invert px-5 lg:px-0 mx-auto ">
         <MDXRemote source={post.content} options={options} />
       </article>
     </section>

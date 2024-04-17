@@ -53,7 +53,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cx(GeistSans.variable, GeistMono.variable)}
     >
-      <body>
+      <body className="">
         <Providers>
           <Navbar />
           <main className="min-h-screen">{children}</main>
