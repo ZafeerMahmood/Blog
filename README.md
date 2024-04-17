@@ -14,9 +14,9 @@ The blog posts are written in markdown and are rendered as static HTML pages.
 
 ## Things Todo
 
+- [x] Deploy to Cloudflare Pages or Vercel with edge runtime
 - [ ] Add a contact form
-- [ ] Deploy to Cloudflare Pages or Vercel with edge runtime
-- [ ] Add Dev branch for development
+- [x] Add Dev branch for development
 - [ ] Add PostgreSQL database for /db/blog
 - [ ] Complete Blog Page Read Mdx files from content/blog
 - [ ] Add a search feature

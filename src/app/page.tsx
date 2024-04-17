@@ -35,8 +35,11 @@ export default function Home() {
           <p className="px-5">
             I{"'"}m passionate about creating experiences that are easy to use,
             accessible and
+            <span className="text-lg text-wrap text-foreground-secondary">
+              <br />
+              that meet the users need.
+            </span>
           </p>
-          <p className="">that meet the users need.</p>
         </div>
       </div>
 

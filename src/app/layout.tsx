@@ -7,7 +7,7 @@ import "@css/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://localhost:3000/"),
+  metadataBase: new URL("https://zafeer.vercel.app/"),
   title: {
     default: "Zafeer Mahmood",
     template: "%s | Zafeer Mahmood",
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zafeer Mahmood",
     description: "Developer, engineer, and problem-solver.",
-    url: "https://Localhost:3000/",
+    url: "https://zafeer.vercel.app/",
     siteName: "Zafeer Mahmood",
     locale: "en_US",
     type: "website",
   },
   robots: {
-    // index: true,
+    index: true,
     follow: true,
     googleBot: {
       index: true,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   verification: {
-    google: "",
+    google: "LygeskwcMMSbv6QS0-zMXjLPHnS_YNCu4HAmugSOX0k",
   },
 };
 

@@ -111,13 +111,6 @@ export const writings = [
       "how to setup a flask project with MongoDB and Docker for a scalable application",
     ttr: "2 mins read",
     time: "2022-08-024",
-    link: "https://zafeer.tech",
-  },
-  {
-    title: "Blog 4",
-    description: "This is a blog",
-    ttr: "2 mins read",
-    time: "2022-01-01",
-    link: "https://zafeer.tech",
+    link: "/blog/flask-project-setup",
   },
 ];
