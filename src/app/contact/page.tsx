@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact | Zafeer Mahmood",
+  description: "Contact Zafeer Mahmood for any inquiries or collaborations.",
+};
+
 function Contact() {
   return (
     <section
