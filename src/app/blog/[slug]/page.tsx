@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense, cache } from "react";
 import { notFound } from "next/navigation";
-import { getViewsCount } from "@db/queries";
+import { getViewsCount } from "@db/actions";
 import { getBlogPosts } from "@db/blog";
 import ViewCounter from "../view-counter";
 import { increment } from "@db/actions";

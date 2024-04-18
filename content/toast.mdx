@@ -1,0 +1,81 @@
+---
+title: "Implementing a custom Toast library in React with Daisy ui and Zustand"
+publishedAt: "2023-10-01"
+summary: "How to create a custom toast library in React with Daisy UI."
+---
+
+In this article, we will learn how to verify JWTs in Python using Auth0 with PyJwt & Crpytography.
+
+## Introduction
+
+{/* ![JWT]('../images/jwt.png') */}
+
+JWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.
+
+## Prerequisites
+
+> Rust uses a relatively unique memory management approach that incorporates the idea of memory “ownership”. Basically, Rust keeps track of who can read and write to memory. It knows when the program is using memory and immediately frees the memory once it is no longer needed. It enforces memory rules at compile time, making it virtually impossible to have runtime memory bugs. You do not need to manually keep track of memory. The compiler takes care of it. – [Discord](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f)
+
+## Adoption
+
+Before we get started, you will need to have the following prerequisites:
+
+- Python installed on your machine
+- Auth0 account
+- PyJwt & Crpytography libraries installed
+
+## Steps
+
+1. Install the PyJwt & Crpytography libraries:
+
+```bash
+pip install pyjwt cryptography
+```
+
+2. Create a new Python file and import the required libraries:
+
+```python
+import jwt
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
+```
+
+3. Define the public key:
+
+```python
+public_key = b"""
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzZz5z5z5z5z5z5z5z5z5
+-----END PUBLIC
+```
+
+4. Verify the JWT:
+
+```python
+def verify_jwt(token):
+    try:
+        decoded = jwt.decode(token, public_key, algorithms=['RS256'])
+        print(decoded)
+    except jwt.ExpiredSignatureError:
+        print('Token has expired')
+    except jwt.InvalidTokenError:
+        print('Invalid token')
+```
+
+5. Call the `verify_jwt` function with the JWT token:
+
+```python
+token = 'eyJ
+verify_jwt(token)
+```
+
+## Conclusion
+
+In this article, we learned how to verify JWTs in Python using Auth0 with PyJwt & Crpytography. This is a simple and secure way to verify JWTs in your Python applications.
+
+I hope you found this article helpful. If you have any questions or feedback, feel free to leave a comment below.
+
+```
+
+# Path: content/nextjs-auth0.mdx
+```
