@@ -92,10 +92,10 @@ export default function BlogById({ params }: { params: any }) {
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter text-start max-w-[54ch] w-full mt-10">
+      <h1 className="title font-medium text-2xl tracking-tighter text-start max-w-[33ch] lg:max-w-[54ch] w-full mt-10">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-start mt-2 mb-8 text-sm max-w-[93ch] w-full ">
+      <div className="flex justify-between items-start mt-2 mb-8 text-sm  max-w-[56ch] lg:max-w-[93ch] w-full ">
         <Suspense fallback={<p className="h-5" />}>
           <p className="text-neutral-400">
             {formatDate(post.metadata.publishedAt)}
