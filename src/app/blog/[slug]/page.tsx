@@ -8,7 +8,7 @@ import { increment } from "@db/actions";
 import rehypeHighlight from "rehype-highlight";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDate } from "@/util";
-import "@css/github-dark.css";
+import '@css/github-dark.css'
 
 export async function generateMetadata({
   params,
@@ -59,12 +59,14 @@ export default function BlogById({ params }: { params: any }) {
   if (!post) {
     notFound();
   }
-  const options: any = {
+  const options: any =  {
     mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [rehypeHighlight],
-    },
-  };
+        remarkPlugins: [],
+        rehypePlugins: [
+            rehypeHighlight,
+        ],
+    }
+}
   return (
     <section
       id="blogbyid"

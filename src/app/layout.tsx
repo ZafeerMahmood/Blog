@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Providers } from "@/theme/provider";
 import Navbar from "@components/header";
 import Footer from "@components/footer";
-import "@css/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import "@css/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zafeer.vercel.app/"),
