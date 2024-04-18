@@ -104,14 +104,6 @@ export const writings = [
     description: "How to create a custom toast library in React with Daisy UI",
     ttr: "5 mins read",
     time: "2023-10-01",
-    link: "/blog/implementing-a-custom-toast-library-in-react-with-daisy-ui-and-zustand",
-  },
-  {
-    title: "Flask project Setup",
-    description:
-      "how to setup a flask project with MongoDB and Docker for a scalable application",
-    ttr: "2 mins read",
-    time: "2022-12-02",
-    link: "/blog/flask-project-setup",
+    link: "/blog/toast",
   },
 ];

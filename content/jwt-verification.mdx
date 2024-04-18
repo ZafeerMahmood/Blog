@@ -1,81 +1,119 @@
 ---
-title: "JWT verification in Python (Auth0)"
+title: "Securing Python Application with JWT verification(Auth0)"
 publishedAt: "2023-05-05"
-summary: "How to verify JWTs in Python using Auth0 with PyJwt & Crpytography."
+summary: "A step-by-step guide to securing Python web applications with JWT verification using Auth0, PyJwt, and Cryptography libraries."
 ---
 
-In this article, we will learn how to verify JWTs in Python using Auth0 with PyJwt & Crpytography.
+Learn how to enhance the security of your Python web applications by implementing JWT verification with Auth0, using PyJwt and Cryptography libraries.
 
 ## Introduction
 
-{/* ![JWT]('../images/jwt.png') */}
+JSON Web Tokens (JWTs) serve as a cornerstone for securing modern web applications, facilitating authentication and authorization processes. In this guide, we'll delve into the robust authentication mechanisms offered by JWTs and demonstrate their seamless integration with Python applications, leveraging the power of Auth0, PyJwt, and Cryptography.
 
-JWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.
+## Why JWT Verification Matters
+
+JWTs provide a secure means of transmitting information between parties, ensuring data integrity and authenticity. By employing JWT verification, developers can thwart unauthorized access attempts and fortify their application's defenses against malicious actors.
 
 ## Prerequisites
 
-> Rust uses a relatively unique memory management approach that incorporates the idea of memory “ownership”. Basically, Rust keeps track of who can read and write to memory. It knows when the program is using memory and immediately frees the memory once it is no longer needed. It enforces memory rules at compile time, making it virtually impossible to have runtime memory bugs. You do not need to manually keep track of memory. The compiler takes care of it. – [Discord](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f)
+Before diving into JWT verification, ensure you have the following prerequisites in place:
 
-## Adoption
+- Create an Account on Auth0: Sign up for an account on Auth0 to leverage its robust authentication and authorization services.
+- Configure an API in Auth0: Set up an API within Auth0 to generate JWTs for authentication purposes.
+- Install Required Libraries: Install the PyJwt and Cryptography libraries to facilitate JWT verification in Python.
 
-Before we get started, you will need to have the following prerequisites:
-
-- Python installed on your machine
-- Auth0 account
-- PyJwt & Crpytography libraries installed
-
-## Steps
-
-1. Install the PyJwt & Crpytography libraries:
-
-```bash
+```python
 pip install pyjwt cryptography
 ```
 
-2. Create a new Python file and import the required libraries:
+## Verifying JWTs
+
+To verify a JWT in Python, you'll need to have env variables from your Auth0 domain and audience.
+
+```.env
+AUTH0_ISSUER_BASE_URL=''
+AUTH0_AUDIENCE=https:''
+AUTH0_CLIENT_ID=''
+```
+
+### Fetching Public Key from Auth0
+
+```python
+import requests
+
+def get_public_key(kid):
+    url = f"https://{Config.AUTH0_ISSUER_BASE_URL}/.well-known/jwks.json"
+    response = requests.get(url)
+    jwks = response.json()
+    keys = jwks["keys"]
+    for key in keys:
+        if key["kid"] == kid:
+            return key
+    return None
+```
+
+### Verifying the Token
 
 ```python
 import jwt
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives import serialization
-```
+from jwt.algorithms import RSAAlgorithm
 
-3. Define the public key:
-
-```python
-public_key = b"""
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzZz5z5z5z5z5z5z5z5z5
------END PUBLIC
-```
-
-4. Verify the JWT:
-
-```python
-def verify_jwt(token):
+def verify_token(token):
+    headers = jwt.get_unverified_header(token)
+    kid = headers["kid"]
+    key = get_public_key(kid)
+    if not key:
+        return None
+    public_key = RSAAlgorithm.from_jwk(key)
     try:
-        decoded = jwt.decode(token, public_key, algorithms=['RS256'])
-        print(decoded)
-    except jwt.ExpiredSignatureError:
-        print('Token has expired')
+        decoded_token = jwt.decode(
+            token, public_key, algorithms=["RS256"], audience=Config.AUTH0_AUDIENCE
+        )
+        return decoded_token
     except jwt.InvalidTokenError:
-        print('Invalid token')
+        return None
 ```
 
-5. Call the `verify_jwt` function with the JWT token:
+### Implementing Decorator Function for API Authorization
 
 ```python
-token = 'eyJ
-verify_jwt(token)
+from flask import jsonify,request
+
+def check_jwt(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return jsonify({'message': 'Authorization token is missing'}), 401
+        parts = authorization_header.split()
+        if len(parts) != 2 or parts[0].lower() != 'bearer':
+            return jsonify({'message': 'Invalid token format'}), 401
+
+        token = parts[1]
+
+        validated_data = verify_token(token)
+        if not validated_data:
+            return jsonify({'message': 'Invalid token'}), 401
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@app.route(f'{API_VERSION}/', methods=['GET'])
+check_jwt
+def hello():
+    res = response("Flask server running!", False, [])
+    return jsonify(res.get()), 200
+
 ```
 
 ## Conclusion
 
-In this article, we learned how to verify JWTs in Python using Auth0 with PyJwt & Crpytography. This is a simple and secure way to verify JWTs in your Python applications.
+In this tutorial, we've explored the significance of JWT verification in bolstering the security of Python web applications. By leveraging Auth0 alongside PyJwt and Cryptography, developers can implement robust authentication mechanisms and safeguard their applications against unauthorized access attempts. Embrace the power of JWT verification to fortify your application's defenses and uphold data integrity in the ever-evolving landscape of web security.
 
-I hope you found this article helpful. If you have any questions or feedback, feel free to leave a comment below.
+---
 
-```
+## Additional Resources
 
-# Path: content/nextjs-auth0.mdx
-```
+[Auth0 Documentation](https://auth0.com/docs/secure/tokens/json-web-tokens/validate-json-web-tokens)
+[PyJwt Documentation](https://pyjwt.readthedocs.io/en/stable/)

@@ -4,78 +4,232 @@ publishedAt: "2023-10-01"
 summary: "How to create a custom toast library in React with Daisy UI."
 ---
 
-In this article, we will learn how to verify JWTs in Python using Auth0 with PyJwt & Crpytography.
+Daisy UI is a modern, accessible, and customizable UI component library for React. In this tutorial,
+the problem is daisy ui only provides css styles and no js functionality, so we will create a custom toast library using daisy ui for the styles and Zustand for the state management.
 
-## Introduction
+this is what dasiy ui provide's
 
-{/* ![JWT]('../images/jwt.png') */}
+```html
+<div className="toast">
+  <div className="alert alert-info">
+    <span>New message arrived.</span>
+  </div>
+</div>
+```
 
-JWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.
+now Lets add some js functionality to it
 
 ## Prerequisites
 
-> Rust uses a relatively unique memory management approach that incorporates the idea of memory “ownership”. Basically, Rust keeps track of who can read and write to memory. It knows when the program is using memory and immediately frees the memory once it is no longer needed. It enforces memory rules at compile time, making it virtually impossible to have runtime memory bugs. You do not need to manually keep track of memory. The compiler takes care of it. – [Discord](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f)
+Before we begin, ensure you have the following prerequisites in place:
 
-## Adoption
+- Basic knowledge of React
+- Node.js installed on your machine
+- A code editor (e.g., VS Code)
+- Tailwind CSS installed in your project
 
-Before we get started, you will need to have the following prerequisites:
+## Setting Up the Project
 
-- Python installed on your machine
-- Auth0 account
-- PyJwt & Crpytography libraries installed
-
-## Steps
-
-1. Install the PyJwt & Crpytography libraries:
+To get started, create a new React project using Create React App
 
 ```bash
-pip install pyjwt cryptography
+npm create vite@latest
 ```
 
-2. Create a new Python file and import the required libraries:
+Setup tailiwnd css
 
-```python
-import jwt
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives import serialization
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm i -D daisyui@latest
 ```
 
-3. Define the public key:
+tailwind.config.js
 
-```python
-public_key = b"""
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzZz5z5z5z5z5z5z5z5z5
------END PUBLIC
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("daisyui")],
+  // setup a theme for daisy ui
+  daisyui: {
+    themes: ["light", "dark"],
+  },
+};
 ```
 
-4. Verify the JWT:
+index.css || app.css || styles.css
 
-```python
-def verify_jwt(token):
-    try:
-        decoded = jwt.decode(token, public_key, algorithms=['RS256'])
-        print(decoded)
-    except jwt.ExpiredSignatureError:
-        print('Token has expired')
-    except jwt.InvalidTokenError:
-        print('Invalid token')
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
-5. Call the `verify_jwt` function with the JWT token:
+Our project is setup with tailwind css and daisy ui
+now lets setup zustand for state management
 
-```python
-token = 'eyJ
-verify_jwt(token)
+```bash
+npm i zustand
+```
+
+## Creating the Toast Store
+
+Create a new file called `toastStore.js` in the `src/lib/store.ts` directory and add the following code:
+
+```js
+import { create } from "zustand";
+
+export type ToastType = "success" | "error" | "info" | "warning";
+
+export interface IToast {
+  id: string;
+  message: string;
+  type: ToastType;
+}
+
+interface ToastStore {
+  toast: IToast[];
+  addTost: (toast: IToast) => void;
+  removeToast: (id: string) => void;
+}
+
+export const useToastStore =create<ToastStore>((set) => ({
+    toast: [],
+    addTost: (toast: IToast) =>
+      set((state) => ({ toast: [...state.toast, toast] })),
+    removeToast: (id: string) =>
+      set((state) => ({ toast: state.toast.filter((t) => t.id !== id) })),
+  }));
+```
+
+## Creating the Toast Component
+
+Create a new file called `Toast.tsx` in the `src/components/Toast/ToastContainer/index.ts` directory and add the following code:
+
+```jsx
+import { useToastStore } from "@/lib/store";
+import { useEffect } from "react";
+
+function ToastContainer({ toastTimer = 2000 }: { toastTimer?: number }) {
+  const toasts = useToastStore((state) => state.toast);
+  const removeToast = useToastStore((state) => state.removeToast);
+  // remove toast after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (toasts.length > 0) {
+        const id = toasts[0].id;
+        useToastStore.getState().removeToast(id);
+      }
+    }, toastTimer);
+    return () => clearTimeout(timer);
+  }, [toastTimer, toasts]);
+  return (
+    <div className="toast toast-end">
+      {toasts.map((toast) => {
+        return (
+          <div
+            key={toast.id}
+            className={`alert flex justify-between ${
+              toast.type === "success"
+                ? "alert-success"
+                : toast.type === "error"
+                ? "alert-error"
+                : toast.type === "info"
+                ? "alert-info"
+                : "alert-warning"
+            }`}
+          >
+            <span className="text-xl px-5 text-start">{toast.message}</span>
+            <button
+              className="btn btn-ghost"
+              onClick={() => removeToast(toast.id)}
+            >
+              X
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default ToastContainer;
+```
+
+## Creating a Hook to Add Toasts
+
+Create a new file called `useToast.ts` in the `src/hooks/useToast.tsx` directory and add the following code:
+
+```jsx
+import { useToastStore } from "@/lib/store";
+import { ToastType } from "@/types";
+
+const useToast = () => {
+  const { addToasts } = useToastStore((state) => ({
+    addToasts: state.addTost,
+  }));
+  const showToast = {
+    success: (message: string) =>
+      addToasts({  id: Math.random().toString(),message, type: "success" as ToastType}),
+    warning: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "warning" as ToastType}),
+    error: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "error" as ToastType}),
+    info: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "info" as ToastType}),
+  };
+
+  return showToast;
+};
+
+export default useToast;
+
+```
+
+## Add ToastContainer to App or Layout
+
+```js
+function Layout({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-w-screen overflow-x-hidden">
+      <Navbar />
+      {children}
+      <ToastContainer />
+      <Footer />
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+## Now you can use the useToast hook to add toasts in your components
+
+```jsx
+function Home() {
+  const toast =useToast();
+  toast.success('msg')
+  toast.error('msg')
+  toast.info('msg')
+  toast.warning('msg')
+  return(
+    ///
+  )
+}
 ```
 
 ## Conclusion
 
-In this article, we learned how to verify JWTs in Python using Auth0 with PyJwt & Crpytography. This is a simple and secure way to verify JWTs in your Python applications.
+In this tutorial, we've explored how to create a custom toast library in React using Daisy UI for the styles and Zustand for state management. By following the steps outlined in this guide, you can enhance the user experience of your React applications by adding toast notifications that provide feedback to users in a visually appealing and unobtrusive manner. Implementing a custom toast library can help you streamline the process of displaying notifications and alerts in your applications, making them more user-friendly and engaging.
 
-I hope you found this article helpful. If you have any questions or feedback, feel free to leave a comment below.
+---
 
-```
+## References
 
-# Path: content/nextjs-auth0.mdx
-```
+- [Daisy UI Documentation](https://daisyui.com/)
+- [Zustand Documentation](https://zustand.surge.sh/)
+- [React Documentation](https://reactjs.org/)
