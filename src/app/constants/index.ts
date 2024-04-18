@@ -91,26 +91,19 @@ export const projects = [
 
 export const writings = [
   {
+    //YY-MM-DD
     title: "JWT verification in Python (Auth0)",
     description: "How to verify JWT tokens in Python using PyJWT and Auth0",
     ttr: "2 mins read",
     time: "2022-04-01",
-    link: "/blog/jwt-verification-in-python-auth0",
+    link: "/blog/jwt-verification",
   },
   {
     title:
       "Implementing a custom Toast library in React with Daisy ui and Zustand",
     description: "How to create a custom toast library in React with Daisy UI",
     ttr: "5 mins read",
-    time: "2023-02-010",
-    link: "/blog/implementing-a-custom-toast-library-in-react-with-daisy-ui-and-zustand",
-  },
-  {
-    title: "Flask project Setup",
-    description:
-      "how to setup a flask project with MongoDB and Docker for a scalable application",
-    ttr: "2 mins read",
-    time: "2022-08-024",
-    link: "/blog/flask-project-setup",
+    time: "2023-10-01",
+    link: "/blog/toast",
   },
 ];

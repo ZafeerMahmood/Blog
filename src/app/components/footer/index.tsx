@@ -12,12 +12,14 @@ function Footer() {
             href={
               "https://github.com/ZafeerMahmood?tab=overview&from=2024-04-01&to=2024-04-15"
             }
+            area-label="Github"
           >
             <Github className="h-5 w-5 cursor-pointer hover:text-primary" />
           </Link>
           <Link
             target="_blank"
             href={"https://www.linkedin.com/in/zafeer-mahmood-20aa28280/"}
+            area-label="LinkedIn"
           >
             <LinkedIn className="h-5 w-5 cursor-pointer hover:text-primary" />
           </Link>

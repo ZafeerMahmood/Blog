@@ -21,9 +21,16 @@
       "@/*": ["./src/app/*"],
       "@components/*": ["./src/app/components/*"],
       "@css/*": ["./src/app/css/*"],
-      "@constants/*": ["./src/app/constants/*"]
+      "@constants/*": ["./src/app/constants/*"],
+      "@db/*": ["./src/app/db/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/components/mdx/index.jd"
+  ],
   "exclude": ["node_modules"]
 }

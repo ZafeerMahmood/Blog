@@ -1,10 +1,11 @@
 import type { Config } from "tailwindcss";
-
+import typography from "@tailwindcss/typography";
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.mdx",
   ],
   theme: {
     screens: {
@@ -14,6 +15,18 @@ const config: Config = {
       xl: "1440px",
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
+      },
+      typography: {
+        quoteless: {
+          css: {
+            "blockquote p:first-of-type::before": { content: "none" },
+            "blockquote p:first-of-type::after": { content: "none" },
+          },
+        },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -29,6 +42,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [typography],
+} satisfies Config;
 export default config;

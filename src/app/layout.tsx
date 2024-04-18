@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Providers } from "@/theme/provider";
-import { Inter } from "next/font/google";
 import Navbar from "@components/header";
 import Footer from "@components/footer";
 import "@css/globals.css";
-const inter = Inter({ subsets: ["latin"] });
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zafeer.vercel.app/"),
@@ -41,14 +41,19 @@ export const metadata: Metadata = {
   },
 };
 
+const cx = (...classes: any[]) => classes.filter(Boolean).join(" ");
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className + ""}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cx(GeistSans.variable, GeistMono.variable)}
+    >
+      <body className="">
         <Providers>
           <Navbar />
           <main className="min-h-screen">{children}</main>

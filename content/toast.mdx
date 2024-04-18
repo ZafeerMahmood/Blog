@@ -1,0 +1,235 @@
+---
+title: "Implementing a custom Toast library in React with Daisy ui and Zustand"
+publishedAt: "2023-10-01"
+summary: "How to create a custom toast library in React with Daisy UI."
+---
+
+Daisy UI is a modern, accessible, and customizable UI component library for React. In this tutorial,
+the problem is daisy ui only provides css styles and no js functionality, so we will create a custom toast library using daisy ui for the styles and Zustand for the state management.
+
+this is what dasiy ui provide's
+
+```html
+<div className="toast">
+  <div className="alert alert-info">
+    <span>New message arrived.</span>
+  </div>
+</div>
+```
+
+now Lets add some js functionality to it
+
+## Prerequisites
+
+Before we begin, ensure you have the following prerequisites in place:
+
+- Basic knowledge of React
+- Node.js installed on your machine
+- A code editor (e.g., VS Code)
+- Tailwind CSS installed in your project
+
+## Setting Up the Project
+
+To get started, create a new React project using Create React App
+
+```bash
+npm create vite@latest
+```
+
+Setup tailiwnd css
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm i -D daisyui@latest
+```
+
+tailwind.config.js
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("daisyui")],
+  // setup a theme for daisy ui
+  daisyui: {
+    themes: ["light", "dark"],
+  },
+};
+```
+
+index.css || app.css || styles.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Our project is setup with tailwind css and daisy ui
+now lets setup zustand for state management
+
+```bash
+npm i zustand
+```
+
+## Creating the Toast Store
+
+Create a new file called `toastStore.js` in the `src/lib/store.ts` directory and add the following code:
+
+```js
+import { create } from "zustand";
+
+export type ToastType = "success" | "error" | "info" | "warning";
+
+export interface IToast {
+  id: string;
+  message: string;
+  type: ToastType;
+}
+
+interface ToastStore {
+  toast: IToast[];
+  addTost: (toast: IToast) => void;
+  removeToast: (id: string) => void;
+}
+
+export const useToastStore =create<ToastStore>((set) => ({
+    toast: [],
+    addTost: (toast: IToast) =>
+      set((state) => ({ toast: [...state.toast, toast] })),
+    removeToast: (id: string) =>
+      set((state) => ({ toast: state.toast.filter((t) => t.id !== id) })),
+  }));
+```
+
+## Creating the Toast Component
+
+Create a new file called `Toast.tsx` in the `src/components/Toast/ToastContainer/index.ts` directory and add the following code:
+
+```jsx
+import { useToastStore } from "@/lib/store";
+import { useEffect } from "react";
+
+function ToastContainer({ toastTimer = 2000 }: { toastTimer?: number }) {
+  const toasts = useToastStore((state) => state.toast);
+  const removeToast = useToastStore((state) => state.removeToast);
+  // remove toast after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (toasts.length > 0) {
+        const id = toasts[0].id;
+        useToastStore.getState().removeToast(id);
+      }
+    }, toastTimer);
+    return () => clearTimeout(timer);
+  }, [toastTimer, toasts]);
+  return (
+    <div className="toast toast-end">
+      {toasts.map((toast) => {
+        return (
+          <div
+            key={toast.id}
+            className={`alert flex justify-between ${
+              toast.type === "success"
+                ? "alert-success"
+                : toast.type === "error"
+                ? "alert-error"
+                : toast.type === "info"
+                ? "alert-info"
+                : "alert-warning"
+            }`}
+          >
+            <span className="text-xl px-5 text-start">{toast.message}</span>
+            <button
+              className="btn btn-ghost"
+              onClick={() => removeToast(toast.id)}
+            >
+              X
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default ToastContainer;
+```
+
+## Creating a Hook to Add Toasts
+
+Create a new file called `useToast.ts` in the `src/hooks/useToast.tsx` directory and add the following code:
+
+```jsx
+import { useToastStore } from "@/lib/store";
+import { ToastType } from "@/types";
+
+const useToast = () => {
+  const { addToasts } = useToastStore((state) => ({
+    addToasts: state.addTost,
+  }));
+  const showToast = {
+    success: (message: string) =>
+      addToasts({  id: Math.random().toString(),message, type: "success" as ToastType}),
+    warning: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "warning" as ToastType}),
+    error: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "error" as ToastType}),
+    info: (message: string) =>
+      addToasts({ id: Math.random().toString(), message, type: "info" as ToastType}),
+  };
+
+  return showToast;
+};
+
+export default useToast;
+
+```
+
+## Add ToastContainer to App or Layout
+
+```js
+function Layout({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-w-screen overflow-x-hidden">
+      <Navbar />
+      {children}
+      <ToastContainer />
+      <Footer />
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+## Now you can use the useToast hook to add toasts in your components
+
+```jsx
+function Home() {
+  const toast =useToast();
+  toast.success('msg')
+  toast.error('msg')
+  toast.info('msg')
+  toast.warning('msg')
+  return(
+    ///
+  )
+}
+```
+
+## Conclusion
+
+In this tutorial, we've explored how to create a custom toast library in React using Daisy UI for the styles and Zustand for state management. By following the steps outlined in this guide, you can enhance the user experience of your React applications by adding toast notifications that provide feedback to users in a visually appealing and unobtrusive manner. Implementing a custom toast library can help you streamline the process of displaying notifications and alerts in your applications, making them more user-friendly and engaging.
+
+---
+
+## References
+
+- [Daisy UI Documentation](https://daisyui.com/)
+- [Zustand Documentation](https://zustand.surge.sh/)
+- [React Documentation](https://reactjs.org/)

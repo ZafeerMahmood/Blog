@@ -1,4 +1,4 @@
-import { skillset, experience1 } from "@constants/index";
+import { skillset } from "@constants/index";
 import SkillSetBox from "@/components/ui/skillsetBox";
 import Experience from "@/components/experience";
 import Projects from "./components/ui/Projects";

@@ -1,0 +1,119 @@
+---
+title: "Securing Python Application with JWT verification(Auth0)"
+publishedAt: "2023-05-05"
+summary: "A step-by-step guide to securing Python web applications with JWT verification using Auth0, PyJwt, and Cryptography libraries."
+---
+
+Learn how to enhance the security of your Python web applications by implementing JWT verification with Auth0, using PyJwt and Cryptography libraries.
+
+## Introduction
+
+JSON Web Tokens (JWTs) serve as a cornerstone for securing modern web applications, facilitating authentication and authorization processes. In this guide, we'll delve into the robust authentication mechanisms offered by JWTs and demonstrate their seamless integration with Python applications, leveraging the power of Auth0, PyJwt, and Cryptography.
+
+## Why JWT Verification Matters
+
+JWTs provide a secure means of transmitting information between parties, ensuring data integrity and authenticity. By employing JWT verification, developers can thwart unauthorized access attempts and fortify their application's defenses against malicious actors.
+
+## Prerequisites
+
+Before diving into JWT verification, ensure you have the following prerequisites in place:
+
+- Create an Account on Auth0: Sign up for an account on Auth0 to leverage its robust authentication and authorization services.
+- Configure an API in Auth0: Set up an API within Auth0 to generate JWTs for authentication purposes.
+- Install Required Libraries: Install the PyJwt and Cryptography libraries to facilitate JWT verification in Python.
+
+```python
+pip install pyjwt cryptography
+```
+
+## Verifying JWTs
+
+To verify a JWT in Python, you'll need to have env variables from your Auth0 domain and audience.
+
+```.env
+AUTH0_ISSUER_BASE_URL=''
+AUTH0_AUDIENCE=https:''
+AUTH0_CLIENT_ID=''
+```
+
+### Fetching Public Key from Auth0
+
+```python
+import requests
+
+def get_public_key(kid):
+    url = f"https://{Config.AUTH0_ISSUER_BASE_URL}/.well-known/jwks.json"
+    response = requests.get(url)
+    jwks = response.json()
+    keys = jwks["keys"]
+    for key in keys:
+        if key["kid"] == kid:
+            return key
+    return None
+```
+
+### Verifying the Token
+
+```python
+import jwt
+from jwt.algorithms import RSAAlgorithm
+
+def verify_token(token):
+    headers = jwt.get_unverified_header(token)
+    kid = headers["kid"]
+    key = get_public_key(kid)
+    if not key:
+        return None
+    public_key = RSAAlgorithm.from_jwk(key)
+    try:
+        decoded_token = jwt.decode(
+            token, public_key, algorithms=["RS256"], audience=Config.AUTH0_AUDIENCE
+        )
+        return decoded_token
+    except jwt.InvalidTokenError:
+        return None
+```
+
+### Implementing Decorator Function for API Authorization
+
+```python
+from flask import jsonify,request
+
+def check_jwt(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return jsonify({'message': 'Authorization token is missing'}), 401
+        parts = authorization_header.split()
+        if len(parts) != 2 or parts[0].lower() != 'bearer':
+            return jsonify({'message': 'Invalid token format'}), 401
+
+        token = parts[1]
+
+        validated_data = verify_token(token)
+        if not validated_data:
+            return jsonify({'message': 'Invalid token'}), 401
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@app.route(f'{API_VERSION}/', methods=['GET'])
+check_jwt
+def hello():
+    res = response("Flask server running!", False, [])
+    return jsonify(res.get()), 200
+
+```
+
+## Conclusion
+
+In this tutorial, we've explored the significance of JWT verification in bolstering the security of Python web applications. By leveraging Auth0 alongside PyJwt and Cryptography, developers can implement robust authentication mechanisms and safeguard their applications against unauthorized access attempts. Embrace the power of JWT verification to fortify your application's defenses and uphold data integrity in the ever-evolving landscape of web security.
+
+---
+
+## Additional Resources
+
+[Auth0 Documentation](https://auth0.com/docs/secure/tokens/json-web-tokens/validate-json-web-tokens)
+[PyJwt Documentation](https://pyjwt.readthedocs.io/en/stable/)

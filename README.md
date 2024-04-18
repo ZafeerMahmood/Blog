@@ -10,15 +10,29 @@ The blog posts are written in markdown and are rendered as static HTML pages.
 - **Blog**: Write blog posts in markdown and have them rendered as static HTML pages.
 - **SEO**: Optimized for search engines with meta tags and Open Graph tags.
 - **Syntax Highlighting**: Code blocks in blog posts are syntax highlighted.
-- **Mobile Responsive**: Works on all devices.
+
+## Getting Started
 
 ## Things Todo
 
 - [x] Deploy to Cloudflare Pages or Vercel with edge runtime
-- [ ] Add a contact form
 - [x] Add Dev branch for development
-- [ ] Add PostgreSQL database for /db/blog
-- [ ] Complete Blog Page Read Mdx files from content/blog
-- [ ] Add a search feature
-- [ ] Render Individual Blog Post
-- [ ] Generate SiteMap based of /db/blog
+- [x] Add PostgreSQL database for /db/blog/views
+- [x] Complete Blog Page Read Mdx files from content/blog
+- [x] Generate SiteMap based of /db/blog
+- [x] Render Individual Blog Post
+- [x] migrate to Supabase
+- [x] add gradingBg to code blocks
+- [x] Add a search feature
+- [ ] write 3 proper blog posts
+- [ ] make a setup script
+- [ ] Add a contact form
+
+## future
+
+- [ ] Add a dark mode
+- [ ] make a custom grid on Blogs
+      with blocks of 3
+      each block has a title, date,views, image, and description
+      render them in 3x3 grid
+      for now reference images via http or when uploaded to github use that as a reference
