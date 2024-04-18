@@ -83,7 +83,7 @@
     @apply visible;
   }
   .prose pre {
-    @apply bg-background rounded-lg overflow-x-auto border border-box-border;
+    @apply bg-background rounded-lg overflow-x-auto border border-box-border gradientBG;
   }
   .prose code {
     @apply px-1 py-0.5 rounded-lg;
@@ -141,8 +141,5 @@
     margin-top: 1.25em;
     margin-bottom: 1.25em;
     @apply text-lg text-foreground-secondary;
-  }
-  .prose .callout > p {
-    margin: 0 !important;
   }
 }

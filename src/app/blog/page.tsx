@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import ViewCounter from "./view-counter";
-import { getViewsCount } from "@db/queries";
+import { getViewsCount } from "@db/actions";
 import { getBlogPosts } from "@db/blog";
 
 export const metadata: Metadata = {
@@ -15,9 +15,9 @@ export default function Blog() {
   return (
     <section
       id="blog"
-      className="flex flex-col max-w-7xl w-full items-center justify-center mx-auto px-10 xl:px-0 mt-28 "
+      className="flex flex-col max-w-[650px]   mx-auto px-10 xl:px-0 mt-28 w-full "
     >
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">
+      <h1 className="font-medium text-2xl mb-8 tracking-tighter w-full ">
         read my blog
       </h1>
       {allBlogs
