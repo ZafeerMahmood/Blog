@@ -70,7 +70,7 @@ export default function BlogById({ params }: { params: any }) {
   return (
     <section
       id="blogbyid"
-      className="flex flex-col max-w-7xl w-full items-center justify-center mx-auto px-10 xl:px-0 mt-28  min-w-80"
+      className="flex flex-col max-w-[650px] mx-auto px-10 xl:px-0 mt-36 w-full"
     >
       <script
         type="application/ld+json"

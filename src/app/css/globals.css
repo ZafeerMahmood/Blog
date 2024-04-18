@@ -40,9 +40,9 @@
     background: var(--background);
   }
 
-  html {
+  /* html {
     min-width: 360px;
-  }
+  } */
 
   h1 {
     @apply text-5xl md:text-6xl lg:text-7xl text-wrap;

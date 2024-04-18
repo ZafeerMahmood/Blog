@@ -8,9 +8,6 @@
   Colors taken from GitHub's CSS
 */
 
-
- rounded-lg overflow-x-auto border border-box-border gradientBG
-
 pre:has(.hljs),.hljs {
  background-color: #101010;
  border-radius: 0.5rem;
