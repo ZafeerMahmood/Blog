@@ -9,6 +9,7 @@ import rehypeHighlight from "rehype-highlight";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDate } from "@/util";
 import "@css/github-dark.css";
+
 export async function generateMetadata({
   params,
 }: {
@@ -91,18 +92,20 @@ export default function BlogById({ params }: { params: any }) {
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter mx-auto">
+      <h1 className="title font-medium text-2xl tracking-tighter text-start max-w-[54ch] w-full mt-10">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-7xl">
+      <div className="flex justify-between items-start mt-2 mb-8 text-sm max-w-[93ch] w-full ">
         <Suspense fallback={<p className="h-5" />}>
-          <p>{formatDate(post.metadata.publishedAt)}</p>
+          <p className="text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
         </Suspense>
         <Suspense fallback={<p className="h-5" />}>
           <Views slug={post.slug} />
         </Suspense>
       </div>
-      <article className="prose prose-quoteless prose-invert px-5 lg:px-0 mx-auto ">
+      <article className="prose prose-quoteless prose-invert text-xs md:text-md lg:text-xl  ">
         <MDXRemote source={post.content} options={options} />
       </article>
     </section>
