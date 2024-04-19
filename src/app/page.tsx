@@ -97,7 +97,7 @@ export default function Home() {
       {/* WRITINGS */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
         <h2 className="text-2xl ">Some of my writings</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
           {writings.map((writings) => {
             return (
               <div
