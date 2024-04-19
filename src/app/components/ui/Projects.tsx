@@ -9,7 +9,7 @@ function Projects({
     <Link
       target="_blank"
       href={projects.github}
-      className="h-full w-full flex justify-between min-h-56 bg-box border-[1px] border-box-border rounded-md dark:gradientBG hover:border-box-accent"
+      className="h-full w-full flex justify-between min-h-56 bg-box border-[1px] border-box-border rounded-md gradientBG hover:border-box-accent"
     >
       <div className="flex p-5"></div>
       <div className="flex flex-col items-center ">
