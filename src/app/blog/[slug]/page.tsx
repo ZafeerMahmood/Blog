@@ -8,7 +8,7 @@ import { increment } from "@db/actions";
 import rehypeHighlight from "rehype-highlight";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDate } from "@/util";
-import '@css/github-dark.css'
+import "@css/github-dark.css";
 
 export async function generateMetadata({
   params,
@@ -59,14 +59,12 @@ export default function BlogById({ params }: { params: any }) {
   if (!post) {
     notFound();
   }
-  const options: any =  {
+  const options: any = {
     mdxOptions: {
-        remarkPlugins: [],
-        rehypePlugins: [
-            rehypeHighlight,
-        ],
-    }
-}
+      remarkPlugins: [],
+      rehypePlugins: [rehypeHighlight],
+    },
+  };
   return (
     <section
       id="blogbyid"
@@ -107,7 +105,7 @@ export default function BlogById({ params }: { params: any }) {
           <Views slug={post.slug} />
         </Suspense>
       </div>
-      <article className="prose prose-quoteless prose-invert text-xs md:text-md lg:text-xl  ">
+      <article className="prose prose-quoteless dark:prose-invert text-xs md:text-md lg:text-xl  ">
         <MDXRemote source={post.content} options={options} />
       </article>
     </section>

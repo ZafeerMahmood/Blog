@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-
 export function Providers({ children }: { children: React.ReactNode }) {
   // use Effect to handle navbar motion
   useEffect(() => {
@@ -8,13 +7,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
       const navBar = document.getElementById("MainNav");
       if (window.scrollY > 100) {
         navBar!!.classList.add(
-          "bg-[#232323]",
+          "dark:bg-[#232323]",
           "border-[1px]",
           "border-box-border"
         );
       } else {
         navBar!!.classList.remove(
-          "bg-[#232323]",
+          "dark:bg-[#232323]",
           "border-[1px]",
           "border-box-border"
         );

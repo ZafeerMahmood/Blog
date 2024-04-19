@@ -24,7 +24,8 @@ The blog posts are written in markdown and are rendered as static HTML pages.
 - [x] migrate to Supabase
 - [x] add gradingBg to code blocks
 - [x] Add a search feature
-- [ ] write 3 proper blog posts
+- [ ] write blog posts - [ ] JWT with python - [ ] daisy ui toast - [ ] Flask Setup. - [ ]
+
 - [ ] make a setup script
 - [ ] Add a contact form
 
