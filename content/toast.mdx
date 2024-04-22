@@ -30,7 +30,7 @@ Before we begin, ensure you have the following prerequisites in place:
 
 ## Setting Up the Project
 
-To get started, create a new React project using Create React App
+To get started, create a new React project using Vite
 
 ```bash
 npm create vite@latest
@@ -44,9 +44,8 @@ npx tailwindcss init -p
 npm i -D daisyui@latest
 ```
 
-tailwind.config.js
-
 ```js
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -61,9 +60,8 @@ export default {
 };
 ```
 
-index.css || app.css || styles.css
-
 ```css
+/* index.css || app.css || styles.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -81,6 +79,7 @@ npm i zustand
 Create a new file called `toastStore.js` in the `src/lib/store.ts` directory and add the following code:
 
 ```js
+// src/lib/store.ts
 import { create } from "zustand";
 
 export type ToastType = "success" | "error" | "info" | "warning";
@@ -97,7 +96,10 @@ interface ToastStore {
   removeToast: (id: string) => void;
 }
 
-export const useToastStore =create<ToastStore>((set) => ({
+export const useToastStore =
+  create <
+  ToastStore >
+  ((set) => ({
     toast: [],
     addTost: (toast: IToast) =>
       set((state) => ({ toast: [...state.toast, toast] })),
@@ -111,6 +113,7 @@ export const useToastStore =create<ToastStore>((set) => ({
 Create a new file called `Toast.tsx` in the `src/components/Toast/ToastContainer/index.ts` directory and add the following code:
 
 ```jsx
+// src/components/Toast/ToastContainer/index.ts
 import { useToastStore } from "@/lib/store";
 import { useEffect } from "react";
 
@@ -165,6 +168,7 @@ export default ToastContainer;
 Create a new file called `useToast.ts` in the `src/hooks/useToast.tsx` directory and add the following code:
 
 ```jsx
+// src/hooks/useToast.tsx
 import { useToastStore } from "@/lib/store";
 import { ToastType } from "@/types";
 

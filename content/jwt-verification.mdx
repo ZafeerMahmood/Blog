@@ -15,7 +15,7 @@ leveraging the power of Auth0, PyJwt, and Cryptography.
 ## Why JWT Verification Matters
 
 JWTs provide a secure means of transmitting information between parties,
-ensuring data integrity and authenticity. By employing JWT verification, 
+ensuring data integrity and authenticity. By employing JWT verification,
 developers can thwart unauthorized access attempts and fortify their application's defenses against malicious actors.
 
 ## Prerequisites
@@ -46,6 +46,7 @@ AUTH0_CLIENT_ID=''
 import requests
 
 def get_public_key(kid):
+    # fetch public key from Auth0
     url = f"https://{Config.AUTH0_ISSUER_BASE_URL}/.well-known/jwks.json"
     response = requests.get(url)
     jwks = response.json()
@@ -82,6 +83,7 @@ def verify_token(token):
 
 ```python
 from flask import jsonify,request
+import functools
 
 def check_jwt(f):
     @wraps(f)
@@ -104,7 +106,7 @@ def check_jwt(f):
 
 
 @app.route(f'{API_VERSION}/', methods=['GET'])
-check_jwt
+check_jwt # this checks the jwt token before the function is executed
 def hello():
     res = response("Flask server running!", False, [])
     return jsonify(res.get()), 200
@@ -113,8 +115,8 @@ def hello():
 
 ## Conclusion
 
-In this tutorial, we've explored the significance of JWT verification in bolstering the security of Python web applications. 
-By leveraging Auth0 alongside PyJwt and Cryptography, developers can implement robust authentication mechanisms and safeguard their applications against unauthorized access attempts. 
+In this tutorial, we've explored the significance of JWT verification in bolstering the security of Python web applications.
+By leveraging Auth0 alongside PyJwt and Cryptography, developers can implement robust authentication mechanisms and safeguard their applications against unauthorized access attempts.
 Embrace the power of JWT verification to fortify your application's defenses and uphold data integrity in the ever-evolving landscape of web security.
 
 ---
