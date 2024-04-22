@@ -11,8 +11,8 @@ function SkillSetBox({
       className={`p-2 border-[1px] bg-box text-sm  rounded-sm ${
         color === "text-foreground-secondary"
           ? "text-foreground-secondary border-box-border"
-          : "text-primary border-primary bg-background-dark"
-      } `}
+          : "text-primary border-primary bg-background-secondary"
+      }`}
     >
       {skill}
     </div>
