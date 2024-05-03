@@ -42,7 +42,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-
+     
       {/* ABOUT */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">About</h2>
