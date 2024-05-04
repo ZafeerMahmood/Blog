@@ -4,15 +4,16 @@ import Experience from "@/components/experience";
 import Projects from "./components/ui/Projects";
 import Writing from "./components/ui/Writing";
 import { projects, writings } from "@constants/index";
+import Meteors from "@/components/ui/lib/meteors";
 
 export default function Home() {
   return (
     <section
       id="Home"
-      className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background"
+      className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background overflow-hidden "
     >
       <div
-        className="flex items-center justify-center h-[700px] w-full"
+        className="flex items-center justify-center h-[700px] w-full relative overflow-hidden rounded-lg md:shadow-xl"
         style={{
           backgroundImage: "url('/stars.svg')",
           backgroundSize: "cover",
@@ -30,6 +31,9 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         >
+          <div className="absolute top-32 left-0 z-0">
+            <Meteors number={10} />
+          </div>
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">A Software Engineer</h1>
           <p className="px-5">
@@ -42,7 +46,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-     
+
       {/* ABOUT */}
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">About</h2>
