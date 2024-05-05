@@ -5,6 +5,7 @@ import Projects from "./components/ui/Projects";
 import Writing from "./components/ui/Writing";
 import { projects, writings } from "@constants/index";
 import Meteors from "@/components/ui/lib/meteors";
+import { Spotlight } from "@components/ui/lib/spotlight";
 
 export default function Home() {
   return (
@@ -14,22 +15,26 @@ export default function Home() {
     >
       <div
         className="flex items-center justify-center h-[700px] w-full relative overflow-hidden rounded-lg md:shadow-xl"
-        style={{
-          backgroundImage: "url('/stars.svg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat",
-        }}
+        // style={{
+        //   backgroundImage: "url('/stars.svg')",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "repeat",
+        // }}
       >
+        <Spotlight
+          className="-top-20 left-1/6 md:left-1/4 md:-top-20"
+          fill="white"
+        />
         {/* HERO */}
         <div
           className="flex flex-col gap-5 text-center items-center justify-center w-full h-full "
-          style={{
-            backgroundImage: "url('/gradient.jpeg')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "auto",
-            backgroundPosition: "center",
-          }}
+          // style={{
+          //   backgroundImage: "url('/gradient.jpeg')",
+          //   backgroundRepeat: "no-repeat",
+          //   backgroundSize: "auto",
+          //   backgroundPosition: "center",
+          // }}
         >
           <div className="absolute top-32 left-0 z-0">
             <Meteors number={10} />
