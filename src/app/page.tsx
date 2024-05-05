@@ -6,6 +6,7 @@ import Writing from "./components/ui/Writing";
 import { projects, writings } from "@constants/index";
 import Meteors from "@/components/ui/lib/meteors";
 import { Spotlight } from "@components/ui/lib/spotlight";
+import { TextGenerateEffect } from "@components/ui/lib/text-generate";
 
 export default function Home() {
   return (
@@ -40,15 +41,20 @@ export default function Home() {
             <Meteors number={10} />
           </div>
           <h1>Hello. I{"'"}m Zafeer.</h1>
-          <h1 className="text-primary">A Software Engineer</h1>
-          <p className="px-5">
+          <h1 className="text-primary">
+            <TextGenerateEffect
+              className="text-5xl md:text-6xl lg:text-7xl text-wrap text-primary"
+              words={"A Software Engineer"}
+            />
+          </h1>
+          {/* <p className="px-5">
             I{"'"}m passionate about creating experiences that are easy to use,
             accessible and
             <span className="text-lg text-wrap text-foreground-secondary">
               <br />
               that meet the users need.
             </span>
-          </p>
+          </p> */}
         </div>
       </div>
 
