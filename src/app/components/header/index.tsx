@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Navbar() {
   return (
-    <header className="fixed top-8 mx-auto w-full flex items-center justify-center h-12 lg:h-14  bg-transparent backdrop-filter  ">
+    <header className="fixed top-8 mx-auto w-full flex items-center justify-center h-12 lg:h-14  bg-transparent backdrop-filter z-[100] ">
       <div
         id="MainNav"
         className="nav backdrop-filter bg-opacity-55  backdrop-blur-lg "
