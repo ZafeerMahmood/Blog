@@ -16,12 +16,12 @@ export default function Home() {
     >
       <div
         className="flex items-center justify-center h-[700px] w-full relative overflow-hidden rounded-lg md:shadow-xl"
-        // style={{
-        //   backgroundImage: "url('/stars.svg')",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        //   backgroundRepeat: "repeat",
-        // }}
+        style={{
+          backgroundImage: "url('/stars.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat",
+        }}
       >
         <Spotlight
           className="-top-20 left-1/6 md:left-1/4 md:-top-20"
@@ -38,7 +38,7 @@ export default function Home() {
           // }}
         >
           <div className="absolute top-32 left-0 z-0">
-            <Meteors number={10} />
+            {/* <Meteors number={10} /> */}
           </div>
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">
