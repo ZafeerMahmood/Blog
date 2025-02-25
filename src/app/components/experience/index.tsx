@@ -1,5 +1,6 @@
-import { experience1, experience2 } from "@/constants";
+import { experience1, experience2, experience3 } from "@/constants";
 import SkillSetBox from "@/components/ui/skillsetBox";
+
 function Experience() {
   return (
     <>
@@ -7,7 +8,37 @@ function Experience() {
         <h2 className="text-2xl">Experience</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 mt-5 w-full gap-5 ">
           <div className="row-span-1 col-span-1 text-foreground-secondary">
-            Mar 2022 - Present
+            Apr 2024 - Present
+          </div>
+          <div className="row-span-1 col-span-3">
+            <h3 className="py-2">TaxGPT - Full Stack Engineer</h3>
+            <p>
+              At TaxGPT, I played a key role in developing an AI-driven tax automation platform,
+              contributing to its growth from 0 ARR to 1M ARR. Working within a high-velocity team of
+              8+ engineers, I helped build scalable and efficient solutions using a modern tech stack
+              including Next.js, Django, and AWS services.
+              Some of my key contributions included designing a seamless onboarding flow, building a team
+              management feature that enabled organization owners to invite members while managing
+              subscription-based billing, and enhancing API performance with caching solutions like SWR.
+              I also worked on production debugging using DataDog and Rollbar, integrated feature flags
+              for controlled rollouts, and maintained unit tests for multiple services in Django.
+              Additionally, I collaborated with the design team to enhance the user experience
+              and migrated the codebase from JSX to TypeScript for better maintainability.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-5">
+              {experience3.map((skill) => {
+                return (
+                  <SkillSetBox
+                    key={skill}
+                    skill={skill}
+                    color={"text-primary"}
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div className="row-span-1 col-span-1 text-foreground-secondary">
+            Mar 2022 - Apr 2024
           </div>
           <div className="row-span-1 col-span-3">
             <h3 className="py-2">DataVoer - Software Engineer</h3>
@@ -27,9 +58,7 @@ function Experience() {
               Express to facilitate seamless data exchange. Notably, I{"'"}ve
               contributed to designing scalable systems architectures for new
               projects, employing JavaScript/TypeScript and Python to ensure
-              robustness, flexibility, and future-proofing. My time at DataVoer
-              has honed my skills and deepened my passion for building
-              innovative solutions that drive business success.
+              robustness, flexibility, and future-proofing.
             </p>
             <div className="flex flex-wrap gap-2 mt-5">
               {experience1.map((skill) => {

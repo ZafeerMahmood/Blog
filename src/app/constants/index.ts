@@ -1,4 +1,4 @@
-export const routes = [
+const routes = [
   {
     name: "Home",
     path: "/",
@@ -13,7 +13,7 @@ export const routes = [
   },
 ];
 
-export const skillset = [
+const skillset = [
   "React",
   "Next.js",
   "JavaScript",
@@ -36,9 +36,32 @@ export const skillset = [
   "Docker",
   "REST API",
   "Linux",
+  "Django",
+  "Django Rest Framework",
+  "MongoDB",
+  "Git",
+  "Redis",
+  "AWS (lamda & S3)",
+  "Github CI/CD",
 ];
 
-export const experience1 = [
+
+const experience3 = [
+  "Django",
+  "Django Rest Framework",
+  "Next.js",
+  "Tailwind CSS",
+  "JavaScript",
+  "TypeScript",
+  "REST",
+  "Redis",
+  "PostgreSQL",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "CI/CD",
+]
+const experience1 = [
   "Next.js",
   "React",
   "Flask",
@@ -50,7 +73,7 @@ export const experience1 = [
   "Python",
 ];
 
-export const experience2 = [
+const experience2 = [
   "Next.js",
   "Tailwind CSS",
   "Supabase",
@@ -60,12 +83,7 @@ export const experience2 = [
   "REST",
 ];
 
-export const projects = [
-  {
-    name: "Flexi",
-    framework: ["React", "Daisy UI", "FLask", "MongoDB"],
-    github: "https://flexi.datavoer.com/",
-  },
+const projects = [
   {
     name: "Blog",
     framework: ["Next.js", "Tailwind CSS", "MDX"],
@@ -76,20 +94,9 @@ export const projects = [
     framework: ["PowerShell", "Bash"],
     github: "https://github.com/ZafeerMahmood/terminal",
   },
-  {
-    name: "NFT Marketplace",
-    framework: [
-      "Next.js",
-      "Firebase",
-      "Goerli Testnet",
-      "Solidity",
-      "Ethereum",
-    ],
-    github: "https://github.com/ZafeerMahmood/Nft_marketplace",
-  },
 ];
 
-export const writings = [
+const writings = [
   {
     //YY-MM-DD
     title: "JWT verification in Python (Auth0)",
@@ -107,3 +114,13 @@ export const writings = [
     link: "/blog/toast",
   },
 ];
+
+
+export {
+  experience1,
+  experience2,
+  experience3,
+  projects,
+  writings,
+  skillset,
+};

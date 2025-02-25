@@ -35,7 +35,7 @@ export default function SearchBox() {
           }}
         />
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400 dark:text-gray-300" />
+          <Search className="h-5 w-5 dark:text-gray-400 text-foreground-secondary" />
         </div>
       </div>
     </form>
