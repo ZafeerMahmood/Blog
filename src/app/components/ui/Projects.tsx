@@ -17,7 +17,7 @@ function Projects({
         <div className="flex flex-wrap gap-2 text-start items-center justify-center ">
           {projects.framework.map((framework) => {
             return (
-              <p key={framework} className="text-neutral-400">
+              <p key={framework} className="dark:text-neutral-400 text-foreground-secondary">
                 {framework}
               </p>
             );

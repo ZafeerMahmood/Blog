@@ -1,21 +1,22 @@
 import { skillset } from "@constants/index";
 import SkillSetBox from "@/components/ui/skillsetBox";
 import Experience from "@/components/experience";
-import Projects from "./components/ui/Projects";
-import Writing from "./components/ui/Writing";
+import Projects from "@/components/ui/Projects";
+import Writing from "@/components/ui/Writing";
 import { projects, writings } from "@constants/index";
-import Meteors from "@/components/ui/lib/meteors";
 import { Spotlight } from "@components/ui/lib/spotlight";
 import { TextGenerateEffect } from "@components/ui/lib/text-generate";
+import { useTheme } from "next-themes";
+import Meteors from "@/components/ui/lib/meteors";
 
 export default function Home() {
   return (
     <section
       id="Home"
-      className="flex flex-col justify-center items-center  dark:bg-gradient-to-b from-background-dark to-bg-background overflow-hidden "
+      className="flex flex-col justify-center items-center dark:bg-gradient-to-b from-background-dark to-bg-background overflow-hidden "
     >
       <div
-        className="flex items-center justify-center h-[700px] w-full relative overflow-hidden rounded-lg md:shadow-xl"
+        className="flex items-center justify-center h-[700px] w-full relative overflow-hidden rounded-lg"
         style={{
           backgroundImage: "url('/stars.svg')",
           backgroundSize: "cover",
@@ -38,7 +39,7 @@ export default function Home() {
           // }}
         >
           <div className="absolute top-32 left-0 z-0">
-            {/* <Meteors number={10} /> */}
+            <Meteors number={10} />
           </div>
           <h1>Hello. I{"'"}m Zafeer.</h1>
           <h1 className="text-primary">

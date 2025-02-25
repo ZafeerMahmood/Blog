@@ -20,10 +20,10 @@ function Writing({
     >
       <div className="flex flex-col justify-items-start ps-1">
         <h3 className="text-lg text-start ">{writings.title}</h3>
-        <p className="text-neutral-300">
+        <p className="dark:text-neutral-300 text-foreground-secondary">
           {formatDate(writings.time)} - {writings.ttr}
         </p>
-        <p className="text-neutral-400">{writings.description}</p>
+        <p className="dark:text-neutral-400 text-foreground-secondary">{writings.description}</p>
       </div>
     </Link>
   );
