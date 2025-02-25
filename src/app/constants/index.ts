@@ -123,4 +123,5 @@ export {
   projects,
   writings,
   skillset,
+  routes,
 };
