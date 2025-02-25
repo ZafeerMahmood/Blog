@@ -1,19 +1,20 @@
 "use client";
 import { useEffect } from "react";
+import { ThemeProvider} from "next-themes";
+
 export function Providers({ children }: { children: React.ReactNode }) {
-  // use Effect to handle navbar motion
   useEffect(() => {
     const handleScroll = () => {
       const navBar = document.getElementById("MainNav");
       if (window.scrollY > 100) {
         navBar!!.classList.add(
-          "bg-[#232323]",
+          "bg-background-dark",
           "border-[1px]",
           "border-box-border"
         );
       } else {
         navBar!!.classList.remove(
-          "bg-[#232323]",
+          "bg-background-dark",
           "border-[1px]",
           "border-box-border"
         );
@@ -26,5 +27,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  return <>{children}</>;
+
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
 }
