@@ -63,6 +63,8 @@ module.exports = {
         "background-secondary": "var(--background-secondary)",
         "background-dark": "var(--background-dark)",
         "box-accent": "var(--box-accent)",
+        "skill-glow-primary": "var(--skill-glow-primary)",
+        "skill-glow-secondary": "var(--skill-glow-secondary)",
       },
     },
   },
