@@ -9,7 +9,7 @@ function Navbar() {
         id="MainNav"
         className="nav backdrop-filter bg-opacity-55  backdrop-blur-lg flex items-center"
       >
-        {routes.map((route) => {
+        {routes.map((route: any) => {
           return (
             <Link
               key={route.name}

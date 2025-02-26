@@ -37,6 +37,8 @@
   --box: #f5f5f5;
   --box-border: #e0e0e0;
   --box-accent: #757575;
+  --skill-glow-primary: rgba(64, 207, 142, 0.7);
+  --skill-glow-secondary: rgba(117, 117, 117, 0.5);
 }
 
 .dark {
@@ -50,6 +52,8 @@
   --box: #232323;
   --box-border: #333333;
   --box-accent: #757575;
+  --skill-glow-primary: rgba(64, 207, 142, 0.8);
+  --skill-glow-secondary: rgba(117, 117, 117, 0.6);
 }
 
 @layer utilities {
@@ -166,4 +170,18 @@
     margin-bottom: 1.25em;
     @apply text-lg text-foreground-secondary;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+
 }

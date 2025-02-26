@@ -7,7 +7,7 @@ import ViewCounter from "../view-counter";
 import { increment } from "@db/actions";
 import rehypeHighlight from "rehype-highlight";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { formatDate } from "@/util";
+import { formatDate } from "../../../util";
 import "@css/github-dark.css";
 
 export async function generateMetadata({

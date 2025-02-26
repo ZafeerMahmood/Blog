@@ -58,8 +58,10 @@ export default function RootLayout({
       <body className="">
         <Providers>
           <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <div className="min-h-screen flex flex-col justify-between">
+            <main>{children}</main>
+            <Footer />
+          </div>
           <SpeedInsights />
           <Analytics />
         </Providers>
