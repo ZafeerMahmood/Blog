@@ -3,6 +3,7 @@ import { FiMail, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 import { Spotlight } from "@/components/ui/lib/spotlight";
 import { TextGenerateEffect } from "@/components/ui/lib/text-generate";
 import Meteors from "@/components/ui/lib/meteors";
+import { LINKS } from "@/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -53,7 +54,7 @@ function Contact() {
 
           <div className="flex flex-wrap gap-6 justify-center mt-8">
             <a 
-              href="https://github.com/ZafeerMahmood" 
+              href={LINKS.github} 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-14 h-14 rounded-full bg-box border border-box-border hover:border-primary hover:text-primary transition-all"
@@ -61,7 +62,7 @@ function Contact() {
               <FiGithub className="text-2xl" />
             </a>
             <a 
-              href="https://www.linkedin.com/in/zafeer-mahmood-20aa28280/" 
+              href={LINKS.linkedin} 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-14 h-14 rounded-full bg-box border border-box-border hover:border-primary hover:text-primary transition-all"

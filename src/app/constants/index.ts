@@ -61,6 +61,7 @@ const experience3 = [
   "AWS",
   "CI/CD",
 ]
+
 const experience1 = [
   "Next.js",
   "React",
@@ -115,6 +116,10 @@ const writings = [
   },
 ];
 
+const LINKS = {
+  github: "https://github.com/ZafeerMahmood",
+  linkedin: "https://www.linkedin.com/in/zafeer-mahmood-20aa28280/",
+}
 
 export {
   experience1,
@@ -124,4 +129,5 @@ export {
   writings,
   skillset,
   routes,
+  LINKS,
 };
