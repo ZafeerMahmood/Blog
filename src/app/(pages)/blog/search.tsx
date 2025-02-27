@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { Search } from "@/components/Icons";
+import { Search } from "../../components/Icons";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchBox() {

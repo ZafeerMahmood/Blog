@@ -1,5 +1,5 @@
-import { experiences } from "@/constants";
-import SkillSetBox from "@/components/ui/skillsetBox";
+import { experiences } from "../../constants";
+import SkillSetBox from "../ui/skillsetBox";
 
 function Experience() {
   return (

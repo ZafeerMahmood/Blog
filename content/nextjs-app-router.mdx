@@ -1,0 +1,379 @@
+---
+title: "Building Modern Web Applications with Next.js App Router"
+publishedAt: "2024-02-10"
+summary: "A comprehensive guide to leveraging Next.js App Router for building fast, SEO-friendly, and maintainable web applications with server components, layouts, and data fetching."
+---
+
+Next.js has revolutionized React development with its powerful features. This guide explores the App Router, a modern approach to building web applications with Next.js.
+
+## Introduction
+
+Next.js App Router represents a paradigm shift in how we structure and build React applications. 
+Introduced in Next.js 13, the App Router provides a more intuitive file-system based routing system, 
+built-in support for React Server Components, and simplified data fetching patterns. This approach 
+enables developers to build more performant, maintainable, and SEO-friendly applications.
+
+## Why Next.js App Router Matters
+
+The App Router offers several advantages over traditional client-side routing:
+
+- **React Server Components**: Render components on the server for improved performance
+- **Nested Layouts**: Create shared UI across routes with minimal re-rendering
+- **Simplified Data Fetching**: Fetch data directly in components without client-side state management
+- **Streaming and Suspense**: Stream UI from the server and show loading states
+- **Route Handlers**: Create API endpoints within the same directory structure
+
+## Setting Up a Next.js Project with App Router
+
+Let's start by creating a new Next.js project with the App Router:
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+```
+
+During the setup, you'll be prompted with several options. Make sure to select "Yes" for "Would you like to use App Router?"
+
+Your project structure will look something like this:
+
+```
+my-app/
+├── app/
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+├── .eslintrc.json
+├── next.config.js
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+└── tsconfig.json
+```
+
+## Understanding the App Directory Structure
+
+The App Router uses a file-system based routing approach where:
+
+- `app/page.tsx` is the main page component for the root route (`/`)
+- `app/layout.tsx` defines the root layout that wraps all pages
+- Nested routes are created by adding directories inside the `app` folder
+- Special files like `page.tsx`, `layout.tsx`, `loading.tsx`, and `error.tsx` have specific roles
+
+## Creating Routes and Layouts
+
+Let's create a simple blog application with multiple routes:
+
+### Root Layout
+
+```tsx
+// app/layout.tsx
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'My Blog',
+  description: 'A blog built with Next.js App Router',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Header />
+        <main className="container mx-auto px-4 py-8">
+          {children}
+        </main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
+```
+
+### Home Page
+
+```tsx
+// app/page.tsx
+import Link from 'next/link'
+import { getPosts } from '@/lib/posts'
+
+export default async function Home() {
+  const posts = await getPosts()
+  
+  return (
+    <div>
+      <h1 className="text-3xl font-bold mb-6">Latest Posts</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <div key={post.id} className="border rounded-lg p-4">
+            <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+            <p className="text-gray-600 mb-4">{post.excerpt}</p>
+            <Link 
+              href={`/blog/${post.slug}`}
+              className="text-blue-600 hover:underline"
+            >
+              Read more
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+### Blog Post Page
+
+```tsx
+// app/blog/[slug]/page.tsx
+import { getPostBySlug, getPosts } from '@/lib/posts'
+import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
+
+// Generate static params for all posts
+export async function generateStaticParams() {
+  const posts = await getPosts()
+  
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+// Generate metadata for each post
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: { slug: string } 
+}): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug)
+  
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    }
+  }
+  
+  return {
+    title: post.title,
+    description: post.excerpt,
+  }
+}
+
+export default async function BlogPost({ 
+  params 
+}: { 
+  params: { slug: string } 
+}) {
+  const post = await getPostBySlug(params.slug)
+  
+  if (!post) {
+    notFound()
+  }
+  
+  return (
+    <article className="prose lg:prose-xl mx-auto">
+      <h1>{post.title}</h1>
+      <div className="text-gray-500 mb-4">
+        Published on {new Date(post.date).toLocaleDateString()}
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+    </article>
+  )
+}
+```
+
+### Not Found Page
+
+```tsx
+// app/blog/[slug]/not-found.tsx
+export default function NotFound() {
+  return (
+    <div className="text-center py-10">
+      <h2 className="text-2xl font-bold mb-4">Post Not Found</h2>
+      <p>Sorry, the post you are looking for does not exist.</p>
+    </div>
+  )
+}
+```
+
+## Data Fetching Patterns
+
+Next.js App Router simplifies data fetching with several approaches:
+
+### Server Components (Default)
+
+```tsx
+// app/users/page.tsx
+async function getUsers() {
+  const res = await fetch('https://api.example.com/users')
+  if (!res.ok) throw new Error('Failed to fetch users')
+  return res.json()
+}
+
+export default async function UsersPage() {
+  const users = await getUsers()
+  
+  return (
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+### Data Fetching with Revalidation
+
+```tsx
+// app/products/page.tsx
+async function getProducts() {
+  const res = await fetch('https://api.example.com/products', {
+    next: { revalidate: 60 } // Revalidate every 60 seconds
+  })
+  if (!res.ok) throw new Error('Failed to fetch products')
+  return res.json()
+}
+
+export default async function ProductsPage() {
+  const products = await getProducts()
+  
+  return (
+    <div>
+      <h1>Products</h1>
+      <div className="grid grid-cols-3 gap-4">
+        {products.map((product) => (
+          <div key={product.id} className="border p-4">
+            <h2>{product.name}</h2>
+            <p>${product.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+### Client Components and SWR
+
+For client-side data fetching, you can use the "use client" directive with SWR:
+
+```tsx
+// app/dashboard/page.tsx
+'use client'
+
+import { useState } from 'react'
+import useSWR from 'swr'
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+export default function Dashboard() {
+  const { data, error, isLoading } = useSWR('/api/dashboard', fetcher, {
+    refreshInterval: 5000 // Refresh every 5 seconds
+  })
+  
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error loading dashboard data</div>
+  
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <div className="stats">
+        <div>Total Users: {data.totalUsers}</div>
+        <div>Active Sessions: {data.activeSessions}</div>
+      </div>
+    </div>
+  )
+}
+```
+
+## Loading UI and Suspense
+
+Next.js App Router provides built-in support for loading states:
+
+```tsx
+// app/dashboard/loading.tsx
+export default function Loading() {
+  return (
+    <div className="flex justify-center items-center h-64">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  )
+}
+```
+
+You can also use React Suspense for more granular loading states:
+
+```tsx
+// app/dashboard/page.tsx
+import { Suspense } from 'react'
+import UserStats from './UserStats'
+import RevenueChart from './RevenueChart'
+
+export default function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <div className="grid grid-cols-2 gap-4">
+        <Suspense fallback={<div>Loading user stats...</div>}>
+          <UserStats />
+        </Suspense>
+        <Suspense fallback={<div>Loading revenue chart...</div>}>
+          <RevenueChart />
+        </Suspense>
+      </div>
+    </div>
+  )
+}
+```
+
+## Route Handlers (API Routes)
+
+Create API endpoints within the App Router:
+
+```tsx
+// app/api/posts/route.ts
+import { NextResponse } from 'next/server'
+import { getPosts } from '@/lib/posts'
+
+export async function GET() {
+  const posts = await getPosts()
+  return NextResponse.json(posts)
+}
+
+export async function POST(request: Request) {
+  const body = await request.json()
+  
+  // Validate and save the post
+  // ...
+  
+  return NextResponse.json({ success: true }, { status: 201 })
+}
+```
+
+## Conclusion
+
+Next.js App Router represents a significant evolution in how we build React applications. By embracing React Server Components, nested layouts, and simplified data fetching, developers can create faster, more maintainable, and SEO-friendly web applications. The file-system based routing approach makes it intuitive to structure your application, while features like streaming, suspense, and route handlers provide powerful tools for building modern web experiences.
+
+---
+
+## Additional Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [Next.js GitHub Repository](https://github.com/vercel/next.js)
+- [Vercel Platform](https://vercel.com) - The best way to deploy Next.js applications 

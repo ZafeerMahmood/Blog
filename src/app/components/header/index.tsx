@@ -1,6 +1,6 @@
-import { routes } from "@/constants/index";
 import Link from "next/link";
-import { ThemeSwitcher } from "../ui/theme-switcher";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { routes } from "@/constants/index";
 
 function Navbar() {
   return (

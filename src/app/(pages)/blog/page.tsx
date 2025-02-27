@@ -1,10 +1,12 @@
-import { Metadata } from "next";
+
 import Link from "next/link";
+import ViewCounter from "@/(pages)/blog/view-counter";
+import SearchBox from "@/(pages)/blog/search";
+
+import { Metadata } from "next";
 import { Suspense } from "react";
-import ViewCounter from "./view-counter";
-import { getViewsCount } from "@db/actions";
-import { getBlogPosts } from "@db/blog";
-import SearchBox from "./search";
+import { getViewsCount } from "@/db/actions";
+import { getBlogPosts } from "@/db/blog";
 
 export const metadata: Metadata = {
   title: "Blog",

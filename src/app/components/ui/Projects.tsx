@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "../Icons";
+import { Github } from "@/components/Icons";
 function Projects({
   projects,
 }: {

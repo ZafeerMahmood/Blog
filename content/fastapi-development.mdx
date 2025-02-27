@@ -1,0 +1,313 @@
+---
+title: "Building High-Performance APIs with FastAPI"
+publishedAt: "2024-01-20"
+summary: "A comprehensive guide to developing robust, high-performance APIs using FastAPI, Pydantic, and SQLAlchemy."
+---
+
+FastAPI has revolutionized Python API development with its high performance, automatic documentation, and type validation. This guide explores how to build production-ready APIs with FastAPI.
+
+## Introduction
+
+FastAPI is a modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints. 
+It's designed to be easy to use while providing high performance comparable to NodeJS and Go, thanks to its 
+foundation on Starlette for the web parts and Pydantic for the data validation.
+
+## Why Choose FastAPI
+
+FastAPI stands out among Python frameworks for several compelling reasons:
+
+- **Performance**: One of the fastest Python frameworks available, on par with NodeJS and Go
+- **Developer Experience**: Intuitive API design with minimal boilerplate code
+- **Automatic Documentation**: Interactive API documentation with Swagger UI and ReDoc
+- **Type Safety**: Leverages Python type hints for validation, serialization, and editor support
+- **Standards-Based**: Built on and fully compatible with OpenAPI and JSON Schema
+
+## Setting Up a FastAPI Project
+
+Let's start by setting up a basic FastAPI project:
+
+```bash
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install fastapi uvicorn sqlalchemy pydantic python-dotenv
+
+# Create project structure
+mkdir -p app/routers app/models app/schemas app/database
+```
+
+Create a basic project structure:
+
+```
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   ├── database
+│   │   ├── __init__.py
+│   │   └── database.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   └── models.py
+│   ├── routers
+│   │   ├── __init__.py
+│   │   └── items.py
+│   └── schemas
+│       ├── __init__.py
+│       └── schemas.py
+├── .env
+└── requirements.txt
+```
+
+## Creating a Database Connection
+
+First, let's set up our database connection using SQLAlchemy:
+
+```python
+# app/database/database.py
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")
+
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+## Defining Models and Schemas
+
+Let's define our database models and Pydantic schemas:
+
+```python
+# app/models/models.py
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.sql import func
+from app.database.database import Base
+
+class Item(Base):
+    __tablename__ = "items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    description = Column(String)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+```
+
+```python
+# app/schemas/schemas.py
+from pydantic import BaseModel
+from datetime import datetime
+from typing import Optional
+
+# Schema for creating an item
+class ItemCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+
+# Schema for reading an item
+class Item(BaseModel):
+    id: int
+    title: str
+    description: Optional[str] = None
+    is_active: bool
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+
+    class Config:
+        orm_mode = True
+```
+
+## Implementing API Routes
+
+Now, let's create our API routes:
+
+```python
+# app/routers/items.py
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from typing import List
+
+from app.database.database import get_db
+from app.models.models import Item as ItemModel
+from app.schemas.schemas import Item, ItemCreate
+
+router = APIRouter(
+    prefix="/items",
+    tags=["items"],
+    responses={404: {"description": "Not found"}},
+)
+
+@router.post("/", response_model=Item, status_code=status.HTTP_201_CREATED)
+def create_item(item: ItemCreate, db: Session = Depends(get_db)):
+    db_item = ItemModel(**item.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@router.get("/", response_model=List[Item])
+def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    items = db.query(ItemModel).offset(skip).limit(limit).all()
+    return items
+
+@router.get("/{item_id}", response_model=Item)
+def read_item(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(ItemModel).filter(ItemModel.id == item_id).first()
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return db_item
+
+@router.put("/{item_id}", response_model=Item)
+def update_item(item_id: int, item: ItemCreate, db: Session = Depends(get_db)):
+    db_item = db.query(ItemModel).filter(ItemModel.id == item_id).first()
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    for key, value in item.dict().items():
+        setattr(db_item, key, value)
+    
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(ItemModel).filter(ItemModel.id == item_id).first()
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    db.delete(db_item)
+    db.commit()
+    return None
+```
+
+## Setting Up the Main Application
+
+Finally, let's set up our main application file:
+
+```python
+# app/main.py
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.database.database import engine
+from app.models.models import Base
+from app.routers import items
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(
+    title="FastAPI Example",
+    description="A sample FastAPI application with SQLAlchemy, Pydantic and PostgreSQL",
+    version="0.1.0",
+)
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with specific origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include routers
+app.include_router(items.router)
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to FastAPI!"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+```
+
+## Running the Application
+
+To run the application:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Visit http://localhost:8000/docs to see the automatic interactive API documentation.
+
+## Advanced FastAPI Features
+
+### Dependency Injection
+
+FastAPI's dependency injection system is powerful for reusing code and separating concerns:
+
+```python
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    user = decode_token(token)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return user
+
+@app.get("/users/me")
+def read_users_me(current_user = Depends(get_current_user)):
+    return current_user
+```
+
+### Background Tasks
+
+FastAPI supports background tasks for operations that don't need to block the response:
+
+```python
+from fastapi import BackgroundTasks
+
+def write_log(message: str):
+    with open("log.txt", "a") as log:
+        log.write(f"{message}\n")
+
+@app.post("/send-notification/{email}")
+async def send_notification(
+    email: str, background_tasks: BackgroundTasks
+):
+    background_tasks.add_task(write_log, f"Notification sent to {email}")
+    return {"message": "Notification sent in the background"}
+```
+
+## Conclusion
+
+FastAPI provides a powerful, modern framework for building high-performance APIs with Python. Its combination of speed, automatic documentation, and type validation makes it an excellent choice for both small projects and enterprise applications. By leveraging FastAPI with SQLAlchemy and Pydantic, you can build robust, maintainable APIs that are both developer-friendly and production-ready.
+
+---
+
+## Additional Resources
+
+- [FastAPI Official Documentation](https://fastapi.tiangolo.com/)
+- [SQLAlchemy Documentation](https://docs.sqlalchemy.org/)
+- [Pydantic Documentation](https://pydantic-docs.helpmanual.io/) 

@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
 import { Suspense, cache } from "react";
 import { notFound } from "next/navigation";
-import { getViewsCount } from "@db/actions";
-import { getBlogPosts } from "@db/blog";
+import { getViewsCount } from "../../../db/actions";
+import { getBlogPosts } from "../../../db/blog";
 import ViewCounter from "../view-counter";
-import { increment } from "@db/actions";
+import { increment } from "../../../db/actions";
 import rehypeHighlight from "rehype-highlight";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDate } from "../../../util";
 import "@css/github-dark.css";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: any;
-}): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
