@@ -1,6 +1,6 @@
-import { routes } from "@/constants/index";
 import Link from "next/link";
-import { ThemeSwitcher } from "../ui/theme-switcher";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { ROUTES } from "@/constants/index";
 
 function Navbar() {
   return (
@@ -9,7 +9,7 @@ function Navbar() {
         id="MainNav"
         className="nav backdrop-filter bg-opacity-55  backdrop-blur-lg flex items-center"
       >
-        {routes.map((route: any) => {
+        {ROUTES.map((route: any) => {
           return (
             <Link
               key={route.name}

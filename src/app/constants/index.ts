@@ -1,4 +1,4 @@
-const routes = [
+const ROUTES = [
   {
     name: "Home",
     path: "/",
@@ -13,16 +13,19 @@ const routes = [
   },
 ];
 
-const skillset = [
+const SKILLSET = [
   "React",
   "Next.js",
   "JavaScript",
   "TypeScript",
   "Python",
   "Flask",
+  "Django",
+  "Django Rest Framework",
   "FastAPI",
   "Node.js",
   "Express.js",
+  "AWS (lamda & S3)",
   "Supabase",
   "Firebase",
   "MongoDB",
@@ -36,16 +39,11 @@ const skillset = [
   "Docker",
   "REST API",
   "Linux",
-  "Django",
-  "Django Rest Framework",
-  "MongoDB",
-  "Git",
   "Redis",
-  "AWS (lamda & S3)",
   "Github CI/CD",
 ];
 
-const experiences = [
+const EXPERIENCES = [
   {
     period: "Apr 2024 - Present",
     title: "TaxGPT - Software Engineer",
@@ -68,11 +66,11 @@ const experiences = [
       "Tailwind CSS",
       "JavaScript",
       "TypeScript",
-      "REST",
+      "REST API",
       "Redis",
+      "Celery",
       "PostgreSQL",
       "Docker",
-      "Kubernetes",
       "AWS",
       "CI/CD",
       "Stripe",
@@ -81,7 +79,7 @@ const experiences = [
       "Rollbar",
       "Feature Flags",
       "Unit Testing",
-      "Momentic Integration Testing",      
+      "Momentic Integration Testing",
     ],
   },
   {
@@ -107,14 +105,14 @@ const experiences = [
     skills: [
       "Next.js",
       "React",
+      "React Native",
+      "Python",
       "Flask",
       "FastAPI",
-      "Python",
       "MongoDB",
       "SQL",
       "REST",
       "Salesforce",
-      "React Native",
       "Git",
       "GitHub Workflows",
       "Docker",
@@ -153,7 +151,7 @@ const experiences = [
   },
 ];
 
-const projects = [
+const PROJECTS = [
   {
     name: "Blog",
     framework: ["Next.js", "Tailwind CSS", "MDX"],
@@ -166,7 +164,7 @@ const projects = [
   },
 ];
 
-const writings = [
+const WRITINGS = [
   {
     //YY-MM-DD
     title: "JWT verification in Python (Auth0)",
@@ -183,18 +181,87 @@ const writings = [
     time: "2023-10-01",
     link: "/blog/toast",
   },
+  {
+    title: "How to Safely Rename a Django App in an Existing Project",
+    description: "A step-by-step guide to renaming a Django app without breaking your project",
+    ttr: "8 mins read",
+    time: "2023-07-20",
+    link: "/blog/rename-django-app",
+  },
+  {
+    title: "Building Robust APIs with Django REST Framework",
+    description: "A comprehensive guide to creating powerful, production-ready APIs with Django REST Framework",
+    ttr: "9 mins read",
+    time: "2023-08-15",
+    link: "/blog/django-rest-framework",
+  },
+  {
+    title: "Implementing Asynchronous Tasks in Django with Celery and Redis",
+    description: "A guide to setting up and using Celery with Redis in Django applications for background tasks",
+    ttr: "10 mins read",
+    time: "2023-11-05",
+    link: "/blog/celery-redis-django",
+  },
+  {
+    title: "TypeScript Best Practices for Modern Web Development",
+    description: "Essential TypeScript best practices to improve code quality, maintainability, and developer experience in modern web applications.",
+    ttr: "6 mins read",
+    time: "2023-12-15",
+    link: "/blog/typescript-best-practices",
+  },
+  {
+    title: "Building High-Performance APIs with FastAPI",
+    description: "A comprehensive guide to developing robust, high-performance APIs using FastAPI, Pydantic, and SQLAlchemy.",
+    ttr: "7 mins read",
+    time: "2024-01-20",
+    link: "/blog/fastapi-development",
+  },
+  {
+    title: "Building Modern Web Applications with Next.js App Router",
+    description: "A guide to leveraging Next.js App Router for building fast, SEO-friendly web applications",
+    ttr: "8 mins read",
+    time: "2024-02-10",
+    link: "/blog/nextjs-app-router",
+  },
+  {
+    title: "Docker Containerization for Modern Web Applications",
+    description: "A practical guide to containerizing web applications with Docker, covering best practices, multi-stage builds, and Docker Compose.",
+    ttr: "8 mins read",
+    time: "2024-03-10",
+    link: "/blog/docker-containerization",
+  },
 ];
 
-const LINKS = {
-  github: "https://github.com/ZafeerMahmood",
-  linkedin: "https://www.linkedin.com/in/zafeer-mahmood-20aa28280/",
+const PROFILE = {
+  F_NAME: "Zafeer",
+  L_NAME: "Mahmood",
+  NAME: "Zafeer Mahmood",
+  TITLE: "Software Engineer",
+  LOCATION: "Islamabad, Pakistan",
+  EMAIL: "zafeer7460@gmail.com",
+  ABOUT: `
+  Hello there! I'm Zafeer, a developer based in Pakistan. My
+  fascination with coding sparked when I first encountered the magic of
+  programming. The allure of using my creativity to shape digital
+  experiences was irresistible. Fuelled by determination and a thirst
+  for knowledge, I pursued my computer science degree and ventured into
+  the world of software engineering. What propels me forward is the
+  excitement of continuous learning and the satisfaction of conquering
+  new challenges. Outside of work, I immerse myself in side projects,
+  exploring my creativity and bringing ideas to fruition.
+  `,
+  LINKS: {
+    github: "https://github.com/ZafeerMahmood",
+    linkedin: "https://www.linkedin.com/in/zafeer-mahmood-20aa28280/",
+  },
+  DEPLOYMENT: "https://zafeer.vercel.app/",
 }
 
 export {
-  experiences,
-  projects,
-  writings,
-  skillset,
-  routes,
-  LINKS,
+  EXPERIENCES,
+  PROJECTS,
+  WRITINGS,
+  SKILLSET,
+  ROUTES,
+  PROFILE
 };

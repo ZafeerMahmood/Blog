@@ -1,5 +1,5 @@
-import { experiences } from "@/constants";
-import SkillSetBox from "@/components/ui/skillsetBox";
+import { EXPERIENCES } from "@/constants/index";
+import SkillSetBox from "../ui/skillsetBox";
 
 function Experience() {
   return (
@@ -7,7 +7,7 @@ function Experience() {
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">Experience</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 mt-5 w-full gap-5 ">
-          {experiences.map((experience, index) => (
+          {EXPERIENCES.map((experience, index) => (
             <>
               <div key={`date-${index}`} className="row-span-1 col-span-1 text-foreground-secondary">
                 {experience.period}

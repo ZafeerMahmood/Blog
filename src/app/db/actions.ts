@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "../util/supabase";
+import { createClient, createAdminClient } from "../util/supabase";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { unstable_noStore as noStore } from "next/cache";
 
@@ -14,7 +14,7 @@ async function getSupabaseClient(): Promise<SupabaseClient> {
 }
 
 export async function increment(slug: string) {
-  const supabase = await getSupabaseClient();
+  const supabase = createAdminClient();
   try {
     noStore();
     const { data: existingViews, error } = await supabase

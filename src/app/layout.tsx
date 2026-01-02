@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import { Providers } from "@/theme/provider";
-import Navbar from "@components/header";
-import Footer from "@components/footer";
+import { Providers } from "./theme/provider";
+import Navbar from "./components/header";
+import Footer from "./components/footer";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import "@css/globals.css";
+import { PROFILE } from "@/constants/index";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zafeer.vercel.app/"),
+  metadataBase: new URL(PROFILE.DEPLOYMENT),
   title: {
-    default: "Zafeer Mahmood",
-    template: "%s | Zafeer Mahmood",
+    default: `${PROFILE.F_NAME} ${PROFILE.L_NAME}`,
+    template: "%s | ${PROFILE.F_NAME} ${PROFILE.L_NAME}",
   },
   description: "Developer, engineer, and problem-solver.",
   openGraph: {
-    title: "Zafeer Mahmood",
+    title: `${PROFILE.F_NAME} ${PROFILE.L_NAME}`,
     description: "Developer, engineer, and problem-solver.",
-    url: "https://zafeer.vercel.app/",
-    siteName: "Zafeer Mahmood",
+    url: PROFILE.DEPLOYMENT,
+    siteName: `${PROFILE.F_NAME} ${PROFILE.L_NAME}`,
     locale: "en_US",
     type: "website",
   },
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Zafeer Mahmood",
+    title: `${PROFILE.F_NAME} ${PROFILE.L_NAME}`,
     card: "summary_large_image",
   },
   verification: {

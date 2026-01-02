@@ -1,6 +1,7 @@
-import { LinkedIn, Github } from "@components/Icons";
 import Link from "next/link";
-import { LINKS } from "@/constants";
+import { PROFILE } from "@/constants/index";
+import { LinkedIn, Github } from "@/components/Icons";
+
 function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -10,14 +11,14 @@ function Footer() {
         <div className="text-xs flex gap-5">
           <Link
             target="_blank"
-            href={LINKS.github}
+            href={PROFILE.LINKS.github}
             area-label="Github"
           >
             <Github className="h-5 w-5 cursor-pointer hover:text-primary" />
           </Link>
           <Link
             target="_blank"
-            href={LINKS.linkedin}
+            href={PROFILE.LINKS.linkedin}
             area-label="LinkedIn"
           >
             <LinkedIn className="h-5 w-5 cursor-pointer hover:text-primary" />
