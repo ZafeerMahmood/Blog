@@ -3,7 +3,7 @@ import Experience from "@/components/experience";
 import Projects from "@/components/ui/Projects";
 import Writing from "@/components/ui/Writing";
 import Meteors from "@/components/ui/lib/meteors";
-import { projects, writings, skillset, PROFILE } from "@/constants/index";
+import { PROJECTS, WRITINGS, SKILLSET, PROFILE } from "@/constants/index";
 import { Spotlight } from "@/components/ui/lib/spotlight";
 import { TextGenerateEffect } from "@/components/ui/lib/text-generate";
 
@@ -33,7 +33,7 @@ export default function Home() {
           <div className="absolute top-32 left-0 z-0">
             <Meteors number={10} />
           </div>
-          <h1>Hello. I{"'"}m Zafeer.</h1>
+          <h1>Hello. I{"'"}m {PROFILE.F_NAME}.</h1>
           <h1 className="text-primary">
             <TextGenerateEffect
               className="text-5xl md:text-6xl lg:text-7xl text-wrap text-primary"
@@ -55,7 +55,7 @@ export default function Home() {
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0">
         <h2 className="text-2xl">Skillset</h2>
         <div className="flex flex-wrap gap-2 mt-5">
-          {skillset.map((skill) => {
+          {SKILLSET.map((skill) => {
             return (
               <SkillSetBox
                 key={skill}
@@ -73,7 +73,7 @@ export default function Home() {
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
         <h2 className="text-2xl ">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
-          {projects.map((project) => {
+          {PROJECTS.map((project) => {
             return (
               <div
                 className="rounded-sm row-span-1 col-span-1"
@@ -90,7 +90,7 @@ export default function Home() {
       <div className="flex flex-col text-start max-w-7xl mt-28 px-10 xl:px-0 w-full  ">
         <h2 className="text-2xl ">Some of my writings</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-3 w-full items-center justify-center">
-          {writings.map((writings) => {
+          {WRITINGS.map((writings) => {
             return (
               <div
                 className="rounded-sm row-span-1 col-span-1"

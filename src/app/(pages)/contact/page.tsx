@@ -6,7 +6,7 @@ import { PROFILE } from "@/constants/index";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Zafeer Mahmood for any inquiries or collaborations.",
+  description: `Contact ${PROFILE.F_NAME} ${PROFILE.L_NAME} for any inquiries or collaborations.`,
 };
 
 function Contact() {

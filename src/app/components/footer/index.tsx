@@ -1,6 +1,7 @@
-import { LinkedIn, Github } from "@/components/Icons";
 import Link from "next/link";
 import { PROFILE } from "@/constants/index";
+import { LinkedIn, Github } from "@/components/Icons";
+
 function Footer() {
   const year = new Date().getFullYear();
   return (

@@ -1,3 +1,5 @@
+import { PROFILE } from "@/constants/index";
+
 export default function robots() {
   return {
     rules: [
@@ -5,7 +7,7 @@ export default function robots() {
         userAgent: "*",
       },
     ],
-    sitemap: "https://zafeer.vercel.app/sitemap.xml",
-    host: "https://zafeer.vercel.app/",
+    sitemap: `${PROFILE.DEPLOYMENT}/sitemap.xml`,
+    host: PROFILE.DEPLOYMENT,
   };
 }

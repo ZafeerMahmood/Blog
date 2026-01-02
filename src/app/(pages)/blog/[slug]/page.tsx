@@ -1,14 +1,16 @@
+
+import rehypeHighlight from "rehype-highlight";
+import ViewCounter from "../view-counter";
+import "@css/github-dark.css";
+
 import type { Metadata } from "next";
 import { Suspense, cache } from "react";
 import { notFound } from "next/navigation";
-import { getViewsCount } from "../../../db/actions";
-import { getBlogPosts } from "../../../db/blog";
-import ViewCounter from "../view-counter";
-import { increment } from "../../../db/actions";
-import rehypeHighlight from "rehype-highlight";
+import { getViewsCount } from "@/db/actions";
+import { getBlogPosts } from "@/db/blog";
+import { increment } from "@/db/actions";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { formatDate } from "../../../util";
-import "@css/github-dark.css";
+import { formatDate } from "@/util/formatDate";
 
 export async function generateMetadata({ params }: { params: any }): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
