@@ -181,55 +181,6 @@ const WRITINGS = [
     time: "2023-10-01",
     link: "/blog/toast",
   },
-  {
-    title: "How to Safely Rename a Django App in an Existing Project",
-    description: "A step-by-step guide to renaming a Django app without breaking your project",
-    ttr: "8 mins read",
-    time: "2023-07-20",
-    link: "/blog/rename-django-app",
-  },
-  {
-    title: "Building Robust APIs with Django REST Framework",
-    description: "A comprehensive guide to creating powerful, production-ready APIs with Django REST Framework",
-    ttr: "9 mins read",
-    time: "2023-08-15",
-    link: "/blog/django-rest-framework",
-  },
-  {
-    title: "Implementing Asynchronous Tasks in Django with Celery and Redis",
-    description: "A guide to setting up and using Celery with Redis in Django applications for background tasks",
-    ttr: "10 mins read",
-    time: "2023-11-05",
-    link: "/blog/celery-redis-django",
-  },
-  {
-    title: "TypeScript Best Practices for Modern Web Development",
-    description: "Essential TypeScript best practices to improve code quality, maintainability, and developer experience in modern web applications.",
-    ttr: "6 mins read",
-    time: "2023-12-15",
-    link: "/blog/typescript-best-practices",
-  },
-  {
-    title: "Building High-Performance APIs with FastAPI",
-    description: "A comprehensive guide to developing robust, high-performance APIs using FastAPI, Pydantic, and SQLAlchemy.",
-    ttr: "7 mins read",
-    time: "2024-01-20",
-    link: "/blog/fastapi-development",
-  },
-  {
-    title: "Building Modern Web Applications with Next.js App Router",
-    description: "A guide to leveraging Next.js App Router for building fast, SEO-friendly web applications",
-    ttr: "8 mins read",
-    time: "2024-02-10",
-    link: "/blog/nextjs-app-router",
-  },
-  {
-    title: "Docker Containerization for Modern Web Applications",
-    description: "A practical guide to containerizing web applications with Docker, covering best practices, multi-stage builds, and Docker Compose.",
-    ttr: "8 mins read",
-    time: "2024-03-10",
-    link: "/blog/docker-containerization",
-  },
 ];
 
 const PROFILE = {
