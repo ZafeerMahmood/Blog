@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-import ViewCounter from "@/(pages)/blog/view-counter";
-import SearchBox from "@/(pages)/blog/search";
+import ViewCounter from "./view-counter";
+import SearchBox from "./search";
 
 import { Metadata } from "next";
 import { Suspense } from "react";

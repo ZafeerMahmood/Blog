@@ -10,7 +10,7 @@ import { getViewsCount } from "@/db/actions";
 import { getBlogPosts } from "@/db/blog";
 import { increment } from "@/db/actions";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { formatDate } from "@/util/formatDate";
+import { formatDate } from "@lib/formatDate";
 
 export async function generateMetadata({ params }: { params: any }): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);

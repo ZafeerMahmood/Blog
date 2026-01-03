@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Github } from "../Icons";
-import { formatDate } from "../../util";
+import { formatDate } from "@lib";
 
 function Writing({
   writings,

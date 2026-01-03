@@ -18,11 +18,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/app/*"],
-      "@components/*": ["./src/app/components/*"],
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
       "@css/*": ["./src/app/css/*"],
       "@constants/*": ["./src/constants/*"],
-      "@db/*": ["./src/app/db/*"]
+      "@db/*": ["./src/db/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@lib": ["./src/lib"]
     }
   },
   "include": [

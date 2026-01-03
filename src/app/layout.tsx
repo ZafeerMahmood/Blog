@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "./theme/provider";
-import Navbar from "./components/header";
-import Footer from "./components/footer";
+import Navbar from "@components/header";
+import Footer from "@components/footer";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { SpeedInsights } from "@vercel/speed-insights/next"
